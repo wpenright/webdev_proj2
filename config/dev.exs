@@ -51,8 +51,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :webdev_proj2, WebdevProj2.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: "admin_reviewer",
+  password: "admin_reviewer",
   database: "webdev_proj2_dev",
   hostname: "localhost",
   pool_size: 10
