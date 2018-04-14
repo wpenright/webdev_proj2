@@ -14,6 +14,8 @@ defmodule Seeds do
   alias WebdevProj2.Repo
   alias WebdevProj2.Accounts.User
   alias WebdevProj2.Accounts.Follow
+  alias WebdevProj2.Reviews.Movie
+  alias WebdevProj2.Reviews.Review
   
   def run do
     password = Comeonin.Argon2.hashpwsalt("securepw")
@@ -29,6 +31,14 @@ defmodule Seeds do
     Repo.insert!(%Follow{follower_id: w.id, followee_id: e.id})
     Repo.insert!(%Follow{follower_id: d.id, followee_id: m.id})
     Repo.insert!(%Follow{follower_id: e.id, followee_id: d.id})
+
+    Repo.delete_all(Movie)
+    a = Repo.insert!(%Movie{title: "The Room", api_id: "AAA"})
+    b = Repo.insert!(%Movie{title: "Avengers: Infinity War", api_id: "BBB"})
+
+    Repo.delete_all(Review)
+    Repo.insert!(%Review{movie_id: a.id, user_id: m.id, rating: 5, user_review: "A modern masterpiece."})
+    Repo.insert!(%Review{movie_id: b.id, user_id: e.id, rating: 5, user_review: "I just know it's going to be great."})
   end
 end
 

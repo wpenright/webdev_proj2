@@ -21,7 +21,7 @@ defmodule WebdevProj2Web.UserController do
   end
 
   def show(conn, %{"id" => id}) do
-    user = Accounts.get_user!(id)
+    user = Accounts.get_user_preloaded(id)
     render(conn, "show.json", user: user)
   end
 

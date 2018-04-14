@@ -38,6 +38,21 @@ defmodule WebdevProj2.Reviews do
   def get_movie!(id), do: Repo.get!(Movie, id)
 
   @doc """
+  Gets a single movie.
+
+  """
+  def get_movie(id), do: Repo.get(Movie, id)
+
+  @doc """
+  Gets a single movie preloaded with reviews.
+
+  """
+  def get_movie_preloaded(id) do
+    Repo.get(Movie, id)
+    |> Repo.preload([reviews: [:user]])
+  end
+
+  @doc """
   Creates a movie.
 
   ## Examples
@@ -115,6 +130,7 @@ defmodule WebdevProj2.Reviews do
   """
   def list_reviews do
     Repo.all(Review)
+    |> Repo.preload([:user, :movie])
   end
 
   @doc """
@@ -131,7 +147,19 @@ defmodule WebdevProj2.Reviews do
       ** (Ecto.NoResultsError)
 
   """
-  def get_review!(id), do: Repo.get!(Review, id)
+  def get_review!(id) do 
+    Repo.get!(Review, id)
+    |> Repo.preload([:user, :movie])
+  end
+
+  @doc """
+  Gets a single review.
+    
+  """
+  def get_review(id) do
+    Repo.get(Review, id)
+    |> Repo.preload([:user, :movie])
+  end
 
   @doc """
   Creates a review.
