@@ -18,10 +18,10 @@ function search(state = search_state, action) {
       }
       return Object.assign({}, state, newData)
     case 'SEARCH_END':
-      let newData = {
+      let newStatus = {
         status: "waiting",
       }
-      newData = Object.assign({}, action.data, newData)
+      newData = Object.assign({}, action.data, newStatus)
       return Object.assign({}, state, newData)
     default:
       return state
