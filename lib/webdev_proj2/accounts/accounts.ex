@@ -19,7 +19,6 @@ defmodule WebdevProj2.Accounts do
   """
   def list_users do
     Repo.all(User)
-    |> Repo.preload(:reviews)
   end
 
   @doc """
@@ -38,7 +37,6 @@ defmodule WebdevProj2.Accounts do
   """
   def get_user!(id) do 
     Repo.get!(User, id)
-    |> Repo.preload(:reviews)
   end
 
   @doc """
@@ -47,7 +45,15 @@ defmodule WebdevProj2.Accounts do
   """
   def get_user(id) do
     Repo.get(User, id)
-    |> Repo.preload(:reviews)
+  end
+
+  @doc """
+  Gets a single user with reviews, followers and followees preloaded.
+
+  """
+  def get_user_preloaded(id) do
+    Repo.get(User, id)
+    |> Repo.preload([reviews: [:movie], followers: [], followees: []])
   end
 
   @doc """
