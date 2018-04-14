@@ -13,10 +13,12 @@ defmodule WebdevProj2Web.ReviewView do
   end
 
   def render("review.json", %{review: review}) do
+    user = if Ecto.assoc_loaded?(review.user), do: review.user, else: nil
+    movie = if Ecto.assoc_loaded?(review.movie), do: review.movie, else: nil
     %{id: review.id,
       rating: review.rating,
       user_review: review.user_review,
-      user: render_one(review.user, UserView, "user.json"),
-      movie: render_one(review.movie, MovieView, "movie.json")}
+      user: render_one(user, UserView, "user.json"),
+      movie: render_one(movie, MovieView, "movie.json")}
   end
 end

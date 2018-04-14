@@ -12,11 +12,14 @@ defmodule WebdevProj2Web.UserView do
   end
 
   def render("user.json", %{user: user}) do
+    reviews = if Ecto.assoc_loaded?(user.reviews), do: user.reviews, else: []
+    followers = if Ecto.assoc_loaded?(user.followers), do: user.followers, else: []
+    followees = if Ecto.assoc_loaded?(user.followees), do: user.followees, else: []
     %{id: user.id,
       name: user.name,
-      email: user.email,
-      reviews: render_many(user.reviews, ReviewView, "review.json"),
-      followers: render_many(user.followers, UserView, "user.json"),
-      followees: render_many(user.followees, UserView, "user.json")}
+      email: user.email,    
+      reviews: render_many(reviews, ReviewView, "review.json"),
+      followers: render_many(followers, UserView, "user.json"),
+      followees: render_many(followees, UserView, "user.json")}
   end
 end
