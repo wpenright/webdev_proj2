@@ -4,6 +4,7 @@ import { connect, Provider } from "react-redux"
 import { BrowserRouter as Router, Route } from "react-router-dom"
 
 import Feed from "./feed"
+import Nav from "./nav"
 import ReviewListItem from "./review_list_item"
 import ReviewPage from "./review_page"
 import Search from "./search"
