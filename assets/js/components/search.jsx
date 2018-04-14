@@ -20,7 +20,7 @@ function Search(props) {
   }
 
   function submitSearch(ev) {
-    // api.submit_seach(props.search_field)
+    // api.submit_seach(props.input)
     console.log("submit", props.form)
   }
   console.log("search props", props)
@@ -28,9 +28,9 @@ function Search(props) {
     <div>
       <Form inline onSubmit={submitSearch}>
         <FormGroup>
-          <Label for="searchByTitle">Search By Title: </Label>
-          <Input type="text" name="searchByTitle" id="searchByTitle"
-                 value={props.search_field} onChange={handleChange}/>
+          <Label for="input">Search By Title: </Label>
+          <Input type="text" name="input" id="input"
+                 value={props.input} onChange={handleChange}/>
           <Button onClick={submitSearch}>Search</Button>
         </FormGroup>
       </Form>
@@ -63,7 +63,7 @@ function mapStateToProps(state) {
   console.log("rerender@Search", state)
   return {
     results: state.search.results,
-    search_field: state.search.input,
+    input: state.search.input,
     status: state.search.status,
   }
 }
