@@ -1,14 +1,20 @@
 import React from "react"
-import { Card, CardBody, CardImg, CardTitle } from "reactstrap"
+import { Container, Row, Col } from "reactstrap"
 
 export default function Result(props) {
   let result = props.result;
   return (
-    <Card>
-      <CardImg left src={ result.Poster} />
-      <CardTitle>Result Title: { result.Title }</CardTitle>
-      <CardTitle>Year Released: { result.Year }</CardTitle>
-      <CardTitle>Result Type: { result.Type }</CardTitle>
-    </Card>
+    <Container>
+      <Row>
+        <Col xs="3">
+          <img src={ result.Poster } />
+        </Col>
+        <Col>
+          <h4>Result Title: { result.Title }</h4>
+          <h4>Year Released: { result.Year }</h4>
+          <h4>Result Type: { result.Type }</h4>
+        </Col>
+      </Row>
+    </Container>
   )
 }
