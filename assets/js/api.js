@@ -53,10 +53,11 @@ class APIServer {
       // dataType: "json",
       // contentType: "application/json; charset=UTF-8",
       success: (resp) => {
-        console.log("search response", resp.data)
+        let response = JSON.parse(resp.data)
+        console.log("search response", response)
         store.dispatch({
           type: "SEARCH_END",
-          data: resp.data["Search"],
+          data: response["Search"],
         });
       },
     });
