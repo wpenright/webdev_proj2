@@ -9,7 +9,7 @@ export default function Result(props) {
         <Col xs="3">
           <img src={ result.Poster } />
         </Col>
-        <Col>
+        <Col xs="auto">
           <h4>Result Title: { result.Title }</h4>
           <h4>Year Released: { result.Year }</h4>
           <h4>Result Type: { result.Type }</h4>
