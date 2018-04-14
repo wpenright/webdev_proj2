@@ -53,6 +53,8 @@ class APIServer {
       // dataType: "json",
       // contentType: "application/json; charset=UTF-8",
       success: (resp) => {
+        console.log("resp", resp)
+        console.log("data", resp.data)
         let response = JSON.parse(resp.data)
         console.log("search response", response)
         store.dispatch({
