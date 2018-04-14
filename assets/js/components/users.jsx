@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import UserForm from './user-form.jsx'
 
 function User(params) {
-  return <p>{params.user.name} - <Link to={"/users/" + params.user.id}>posts</Link></p>
+  return <p>{params.user.name} - <Link to={"/users/" + params.user.id}>{ params.user.name }</Link></p>
 }
 
 export default function Users(params) {
