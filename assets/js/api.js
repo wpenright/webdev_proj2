@@ -47,7 +47,7 @@ class APIServer {
     store.dispatch({
       type: "SEACH_START",
     })
-    url = "http://www.omdbapi.com/?apikey=944d5561&s=" + search_field
+    let url = "http://www.omdbapi.com/?apikey=944d5561&s=" + search_field
     $.ajax(url, {
       method: "get",
       dataType: "json",
