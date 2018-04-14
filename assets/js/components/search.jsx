@@ -2,7 +2,7 @@ import React from "react"
 import { Button, Form, FormGroup, Label, Input } from "reactstrap"
 import Result from "./result"
 
-export default function Search(props) {
+function Search(props) {
 
   function handleChange(ev) {
     let tgt = $(ev.target)
