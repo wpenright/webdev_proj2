@@ -1,6 +1,33 @@
 import { createStore, combineReducers } from "redux"
 import deepFreeze from "deep-freeze"
 
+function movies(state = [], action) {
+  switch (action.type) {
+  case 'MOVIES_LIST':
+    return [...action.movies];
+  default:
+    return state;
+  }
+}
+
+function reviews(state = [], action) {
+  switch (action.type) {
+  case 'REVIEW_LIST':
+    return [...action.reviews];
+  default:
+    return state;
+  }
+}
+
+function users(state = [], action) {
+  switch (action.type) {
+  case 'USERS_LIST':
+    return [...action.users];
+  default:
+    return state;
+  }
+}
+
 let search_state = {
   status: "waiting",
   input: "",
@@ -56,7 +83,7 @@ function root_reducer(state0, action) {
   console.log("reducer", action)
   // {posts, users, form} is ES6 shorthand for
   // {posts: posts, users: users, form: form}
-  let reducer = combineReducers({login, search, token})
+  let reducer = combineReducers({login, reviews, search, token, users})
   let state1 = reducer(state0, action)
   console.log("state1", state1)
   return deepFreeze(state1)

@@ -9,7 +9,7 @@ class APIServer {
       success: (resp) => {
         store.dispatch({
           type: "USER_LIST",
-          tasks: resp.data,
+          users: resp.data,
         });
       },
     });
@@ -23,7 +23,7 @@ class APIServer {
       success: (resp) => {
         store.dispatch({
           type: "REVIEW_LIST",
-          tasks: resp.data,
+          reviews: resp.data,
         });
       },
     });
@@ -37,7 +37,7 @@ class APIServer {
       success: (resp) => {
         store.dispatch({
           type: "MOVIES_LIST",
-          tasks: resp.data,
+          movies: resp.data,
         });
       },
     });
