@@ -5,9 +5,11 @@ import { BrowserRouter as Router, Route } from "react-router-dom"
 
 import Feed from "./feed"
 import Nav from "./nav"
+import ReviewList from "./reviews"
 import ReviewListItem from "./review_list_item"
 import ReviewPage from "./review_page"
 import Search from "./search"
+import Users from "./users"
 
 export default function reviewer_init(store) {
   ReactDOM.render(
@@ -40,7 +42,7 @@ let Reviewer = connect((state) => state)((props) => {
           } />
         } />
         <Route path="/reviews" exact={true} render={() =>
-          <Reviews reviews={props.reviews} />
+          <ReviewList reviews={props.reviews} />
         } />
         <Route path="/reviews/:review_id" render={({match}) =>
           <ReviewPage review={_.filter(props.reviews, (r) =>
