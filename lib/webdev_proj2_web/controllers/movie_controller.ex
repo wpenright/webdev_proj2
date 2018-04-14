@@ -21,7 +21,7 @@ defmodule WebdevProj2Web.MovieController do
   end
 
   def show(conn, %{"id" => id}) do
-    movie = Reviews.get_movie!(id)
+    movie = Reviews.get_movie_preloaded(id)
     render(conn, "show.json", movie: movie)
   end
 
