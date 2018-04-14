@@ -1,7 +1,7 @@
 defmodule WebdevProj2.Reviews.Movie do
   use Ecto.Schema
   import Ecto.Changeset
-
+  alias WebdevProj2.Reviews.Review
 
   schema "movies" do
     field :api_id, :string
@@ -9,7 +9,7 @@ defmodule WebdevProj2.Reviews.Movie do
     field :runtime, :string
     field :summary, :string
     field :title, :string
-    has_many :reviews, :Review, foreign_key: :movie_id
+    has_many :reviews, Review, foreign_key: :movie_id
 
     timestamps()
   end

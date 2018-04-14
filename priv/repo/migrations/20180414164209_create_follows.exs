@@ -3,13 +3,13 @@ defmodule WebdevProj2.Repo.Migrations.CreateFollows do
 
   def change do
     create table(:follows) do
-      add :follower_id, references(:User, on_delete: :delete_all), null: false
-      add :followee_id, references(:User, on_delete: :delete_all), null: false
+      add :follower_id, references(:users, on_delete: :delete_all), null: false
+      add :followee_id, references(:users, on_delete: :delete_all), null: false
 
       timestamps()
     end
 
-    create index(:follows, [:follower])
-    create index(:follows, [:followee])
+    create index(:follows, [:follower_id])
+    create index(:follows, [:followee_id])
   end
 end

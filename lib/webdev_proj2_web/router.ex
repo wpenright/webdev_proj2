@@ -20,7 +20,12 @@ defmodule WebdevProj2Web.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", WebdevProj2Web do
-  #   pipe_through :api
-  # end
+  scope "/api/v1", WebdevProj2Web do
+    pipe_through :api
+
+    resources "/users", UserController, except: [:new, :edit]
+    resources "/follows", FollowController, except: [:new, :edit]
+    resources "/movies", MovieController, except: [:new, :edit]
+    resources "/reviews", ReviewController, except: [:new, :edit]
+  end
 end
