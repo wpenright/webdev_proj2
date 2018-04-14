@@ -20,7 +20,7 @@ exports.config = {
       // }
     },
     stylesheets: {
-      joinTo: "css/app.css"
+      joinTo: "css/app.scss"
     },
     templates: {
       joinTo: "js/app.js"
@@ -46,7 +46,8 @@ exports.config = {
   plugins: {
     babel: {
       // Do not use ES6 compiler in vendor code
-      ignore: [/vendor/]
+      ignore: [/vendor/],
+      presets: ['env', 'react'],
     },
     sass: {
       options: {
@@ -65,6 +66,7 @@ exports.config = {
   npm: {
     enabled: true,
     globals: {
+      _: 'underscore',
       $: 'jquery'
     }
   }
