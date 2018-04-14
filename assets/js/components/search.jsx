@@ -28,7 +28,7 @@ function Search(props) {
     <div>
       <Form inline onSubmit={submitSearch}>
         <FormGroup>
-          <Label for="searchByTitle">Search By Title </Label>
+          <Label for="searchByTitle">Search By Title: </Label>
           <Input type="text" name="searchByTitle" id="searchByTitle"
                  value={props.search_field} onChange={handleChange}/>
           <Button onClick={submitSearch}>Search</Button>

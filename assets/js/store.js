@@ -10,6 +10,7 @@ let search_state = {
 function search(state = search_state, action) {
   switch (action.type) {
     case "SEARCH_UPDATE":
+      console.log("update", action.data)
       return Object.assign({}, state, action.data)
     case "SEARCH_START":
       let newData = {
