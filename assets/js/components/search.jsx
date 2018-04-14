@@ -23,7 +23,7 @@ function Search(props) {
     // api.submit_seach(props.search_field)
     console.log("submit", props.form)
   }
-
+  console.log("search props", props)
   return (
     <div>
       <Form inline onSubmit={submitSearch}>
