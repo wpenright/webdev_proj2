@@ -20,8 +20,8 @@ function Search(props) {
   }
 
   function submitSearch(ev) {
-    // api.submit_seach(props.input)
-    console.log("submit", props.form)
+    api.submit_seach(props.input)
+    console.log("submit", props.input)
   }
   console.log("search props", props)
   return (
