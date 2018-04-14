@@ -40,7 +40,7 @@ function Search(props) {
         ? <div>
           <p>Searching</p>
         </div>
-        : props.result.length === 0
+        : props.results.length === 0
           ? <p>No results</p>
           : <div>
               { props.results.map((result) => <Result key={ result.imdbID } result={result} />)}
