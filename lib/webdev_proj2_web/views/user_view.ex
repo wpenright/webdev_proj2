@@ -17,7 +17,7 @@ defmodule WebdevProj2Web.UserView do
     followees = if Ecto.assoc_loaded?(user.followees), do: user.followees, else: []
     %{id: user.id,
       name: user.name,
-      email: user.email,    
+      email: user.email,
       reviews: render_many(reviews, ReviewView, "review.json"),
       followers: render_many(followers, UserView, "user.json"),
       followees: render_many(followees, UserView, "user.json")}
