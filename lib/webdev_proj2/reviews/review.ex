@@ -1,13 +1,15 @@
 defmodule WebdevProj2.Reviews.Review do
   use Ecto.Schema
   import Ecto.Changeset
+  alias WebdevProj2.Accounts.User
+  alias WebdevProj2.Reviews.Movie
 
 
   schema "reviews" do
     field :rating, :integer
     field :user_review, :string
-    field :user, :id
-    field :movie, :id
+    belongs_to :user, User
+    belongs_to :movie, Movie
 
     timestamps()
   end

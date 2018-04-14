@@ -3,10 +3,10 @@ defmodule WebdevProj2.Repo.Migrations.CreateReviews do
 
   def change do
     create table(:reviews) do
-      add :rating, :integer
-      add :user_review, :string
-      add :user_id, references(:User, on_delete: :nothing)
-      add :movie_id, references(:Movie, on_delete: :nothing)
+      add :rating, :integer, null: false
+      add :user_review, :string, null: false
+      add :user_id, references(:User, on_delete: :nothing), null: false
+      add :movie_id, references(:Movie, on_delete: :delete_all), null: false
 
       timestamps()
     end

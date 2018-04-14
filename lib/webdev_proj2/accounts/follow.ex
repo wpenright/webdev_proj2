@@ -1,11 +1,12 @@
 defmodule WebdevProj2.Accounts.Follow do
   use Ecto.Schema
   import Ecto.Changeset
+  alias WebdevProj2.Accounts.User
 
 
   schema "follows" do
-    field :follwee, :id
-    field :follower, :id
+    belongs_to :follower, User
+    belongs_to :followee, User
 
     timestamps()
   end
@@ -13,7 +14,7 @@ defmodule WebdevProj2.Accounts.Follow do
   @doc false
   def changeset(follow, attrs) do
     follow
-    |> cast(attrs, [])
-    |> validate_required([])
+    |> cast(attrs, [:follower_id, :followee_id])
+    |> validate_required([:follower_id, :followee_id])
   end
 end

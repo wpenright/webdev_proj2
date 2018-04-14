@@ -9,6 +9,7 @@ defmodule WebdevProj2.Reviews.Movie do
     field :runtime, :string
     field :summary, :string
     field :title, :string
+    has_many :reviews, :Review, foreign_key: :movie_id
 
     timestamps()
   end
@@ -17,6 +18,6 @@ defmodule WebdevProj2.Reviews.Movie do
   def changeset(movie, attrs) do
     movie
     |> cast(attrs, [:title, :api_id, :runtime, :poster, :summary])
-    |> validate_required([:title, :api_id, :runtime, :poster, :summary])
+    |> validate_required([:title, :api_id])
   end
 end
