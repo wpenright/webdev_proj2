@@ -19,6 +19,7 @@ defmodule WebdevProj2.Accounts do
   """
   def list_users do
     Repo.all(User)
+    |> Repo.preload(:reviews)
   end
 
   @doc """
@@ -35,7 +36,19 @@ defmodule WebdevProj2.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id)
+  def get_user!(id) do 
+    Repo.get!(User, id)
+    |> Repo.preload(:reviews)
+  end
+
+  @doc """
+  Gets a single user.
+
+  """
+  def get_user(id) do
+    Repo.get(User, id)
+    |> Repo.preload(:reviews)
+  end
 
   @doc """
   Creates a user.
@@ -115,6 +128,8 @@ defmodule WebdevProj2.Accounts do
   """
   def list_follows do
     Repo.all(Follow)
+    |> Repo.preload(:follower)
+    |> Repo.preload(:followee)
   end
 
   @doc """
@@ -131,7 +146,11 @@ defmodule WebdevProj2.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_follow!(id), do: Repo.get!(Follow, id)
+  def get_follow!(id) do 
+    Repo.get!(Follow, id)
+    |> preload(:follower)
+    |> preload(:followee)
+  end
 
   @doc """
   Creates a follow.
