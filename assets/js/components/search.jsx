@@ -28,7 +28,7 @@ function Search(props) {
     <div>
       <Form inline onSubmit={submitSearch}>
         <FormGroup>
-          <Label for="searchByTitle">Search By Title</Label>
+          <Label for="searchByTitle">Search By Title </Label>
           <Input type="text" name="searchByTitle" id="searchByTitle"
                  value={props.search_field} onChange={handleChange}/>
           <Button onClick={submitSearch}>Search</Button>
@@ -36,15 +36,24 @@ function Search(props) {
       </Form>
 
       <h4>Results: </h4>
-      { props.status === "searching"
-        ? <div>
+      { props.status === "searching" &&
+        <div>
           <p>Searching</p>
         </div>
-        : props.results.length === 0
-          ? <p>No results</p>
-          : <div>
-              { props.results.map((result) => <Result key={ result.imdbID } result={result} />)}
-            </div>
+      }
+      { props.status === "waiting" &&
+        <div>
+          <p>Please Search</p>
+        </div>
+      }
+      { props.status === "have_results" &&
+        <div>
+          props.results.length === 0
+            ? <p>No results</p>
+            : <div>
+                { props.results.map((result) => <Result key={ result.imdbID } result={result} />)}
+              </div>
+        </div>
       }
     </div>
   )

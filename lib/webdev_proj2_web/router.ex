@@ -17,6 +17,10 @@ defmodule WebdevProj2Web.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/search", PageController, :index
+    get "/movies", PageController, :index
+    get "/users", PageController, :index
+    get "/feed", PageController, :index
   end
 
   # Other scopes may use custom stacks.
