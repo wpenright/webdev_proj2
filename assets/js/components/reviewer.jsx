@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom"
 
 import Feed from "./feed"
 import Nav from "./nav"
-import ReviewList from "./reviews"
+import ReviewList from "./review_list"
 import ReviewListItem from "./review_list_item"
 import ReviewPage from "./review_page"
 import Search from "./search"
