@@ -62,3 +62,5 @@ class APIServer {
     });
   }
 }
+
+export default new APIServer();
