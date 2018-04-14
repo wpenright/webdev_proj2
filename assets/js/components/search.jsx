@@ -48,11 +48,11 @@ function Search(props) {
       }
       { props.status === "have_results" &&
         <div>
-          props.results.length === 0
+          {props.results.length === 0
             ? <p>No results</p>
             : <div>
                 { props.results.map((result) => <Result key={ result.imdbID } result={result} />)}
-              </div>
+              </div>}
         </div>
       }
     </div>
