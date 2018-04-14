@@ -28,11 +28,20 @@ function search(state = search_state, action) {
   }
 }
 
+function token(state = null, action) {
+  switch (action.type) {
+    case 'SET_TOKEN':
+      return action.token;
+    default:
+      return state;
+  }
+}
+
 function root_reducer(state0, action) {
   console.log("reducer", action);
   // {posts, users, form} is ES6 shorthand for
   // {posts: posts, users: users, form: form}
-  let reducer = combineReducers({search});
+  let reducer = combineReducers({search, token});
   let state1 = reducer(state0, action);
   console.log("state1", state1);
   return deepFreeze(state1);
