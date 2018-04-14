@@ -39,7 +39,7 @@ export default function Search(props) {
           <p>Searching</p>
         </div>
         : props.result.length === 0
-          ? No results
+          ? <p>No results</p>
           : <div>
               { props.results.map((result) => <Result key={ result.imdbID } result={result} />)}
             </div>

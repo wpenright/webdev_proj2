@@ -1,6 +1,6 @@
 import store from "./store";
 
-class APIServer
+class APIServer {
   request_users() {
     $.ajax("/api/v1/user", {
       method: "get",
@@ -61,5 +61,4 @@ class APIServer
       },
     });
   }
-
 }
