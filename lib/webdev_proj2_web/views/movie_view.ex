@@ -1,6 +1,7 @@
 defmodule WebdevProj2Web.MovieView do
   use WebdevProj2Web, :view
   alias WebdevProj2Web.MovieView
+  alias WebdevProj2Web.ReviewView
 
   def render("index.json", %{movies: movies}) do
     %{data: render_many(movies, MovieView, "movie.json")}
@@ -16,6 +17,7 @@ defmodule WebdevProj2Web.MovieView do
       api_id: movie.api_id,
       runtime: movie.runtime,
       poster: movie.poster,
-      summary: movie.summary}
+      summary: movie.summaryi,
+      reviews: render_many(movie.reviews, ReviewView, "review.json")}
   end
 end
