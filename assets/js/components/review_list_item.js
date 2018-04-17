@@ -11,10 +11,10 @@ export default function ReviewListItem(props) {
         </NavLink>
       </CardTitle>
       <CardTitle>Review Of: { review.movie.title }</CardTitle>
-      <CardTitle>Review Rating: { review.movie.rating }</CardTitle>
+      <CardTitle>Review Rating: { review.rating }</CardTitle>
       <CardBody>
         <div>
-          <p>{ review.review }</p>
+          <p>{ review.user_review }</p>
         </div>
       </CardBody>
     </Card>
