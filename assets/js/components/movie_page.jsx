@@ -13,15 +13,15 @@ export default function MoviePage(props) {
           <ReviewForm movie={props.movie} />
           <Row>
             <Col xs="3">
-              <img src={ props.movie.poster_url} />
+              <img src={ props.movie.poster} />
             </Col>
             <Col>
-              <h4> Review of { props.movie.title } </h4>
+              <h4> { props.movie.title } </h4>
               <h4> Released { props.year } </h4>
             </Col>
           </Row>
           <Row>
-            <ReviewList reviews={props.reviews} />
+            <ReviewList reviews={props.reviews} movieLinks={false}/>
           </Row>
         </div>
       }

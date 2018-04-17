@@ -42,7 +42,7 @@ let Reviewer = connect((state) => state)((props) => {
           } />
         } />
         <Route path="/reviews" exact={true} render={() =>
-          <ReviewList reviews={props.reviews} />
+          <ReviewList reviews={props.reviews} movieLinks={true}/>
         } />
         <Route path="/movies/:movie_id" render={({match}) =>
           <MoviePage movie={_.filter(props.movies, (m) =>
