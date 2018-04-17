@@ -21,12 +21,12 @@ defmodule WebdevProj2Web.MovieController do
   end
 
   def show(conn, %{"id" => id}) do
-    movie = Reviews.get_movie_preloaded(id)
+    movie = Reviews.get_movie_by_api_preloaded(id)
     render(conn, "show.json", movie: movie)
   end
 
   def update(conn, %{"id" => id, "movie" => movie_params}) do
-    movie = Reviews.get_movie!(id)
+    movie = Reviews.get_movie_by_api(id)
 
     with {:ok, %Movie{} = movie} <- Reviews.update_movie(movie, movie_params) do
       render(conn, "show.json", movie: movie)
@@ -34,7 +34,7 @@ defmodule WebdevProj2Web.MovieController do
   end
 
   def delete(conn, %{"id" => id}) do
-    movie = Reviews.get_movie!(id)
+    movie = Reviews.get_movie_by_api(id)
     with {:ok, %Movie{}} <- Reviews.delete_movie(movie) do
       send_resp(conn, :no_content, "")
     end
