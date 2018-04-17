@@ -1,5 +1,4 @@
 import React from "react"
-import { NavLink } from "react-router-dom"
 import { Container, Row, Col } from "reactstrap"
 
 import ReviewForm from "./review_form"
