@@ -48,7 +48,7 @@ let Reviewer = connect((state) => state)((props) => {
           <MoviePage movie={_.filter(props.movies, (m) =>
             match.params.movie_id == m.id )
           } reviews={_.filter(props.reviews, (r) =>
-            match.params.movie_id == r.movie.id )
+            match.params.movie_id == r.movie.id )[0]
           }/>
         } />
       </div>
