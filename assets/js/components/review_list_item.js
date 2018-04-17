@@ -14,7 +14,7 @@ export default function ReviewListItem(props) {
           <a href={"/movies/" + props.review.movie.id} >
             { props.review.movie.title }
           </a>
-        : { props.review.movie.title }
+          : props.review.movie.title
         }
       </CardTitle>
       <CardTitle>Review Rating: { review.rating }</CardTitle>
