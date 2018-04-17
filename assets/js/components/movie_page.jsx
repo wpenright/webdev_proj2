@@ -8,7 +8,7 @@ export default function MoviePage(props) {
   console.log("movie page props", props)
   return (
     <Container>
-      {props.movie &&
+      {props.movie != undefined &&
         <div>
           <ReviewForm movie={props.movie} />
           <Row>
