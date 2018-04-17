@@ -6,7 +6,7 @@ export default function ReviewListItem(props) {
   return (
     <Card>
       <CardTitle>
-        Review By: <NavLink to={"/users/" + props.review.user.id} className="nav-link" exact={true}>
+        Review By: <NavLink to={"/users/" + props.review.user.id} className="nav-link" exact={"true"}>
           { props.review.user.name }
         </NavLink>
       </CardTitle>

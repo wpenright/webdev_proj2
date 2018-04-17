@@ -20,7 +20,7 @@ export default function ReviewPageprops(props) {
         </Col>
       </Row>
       <Row>
-        {props.reviews.map((review) => <ReviewListItem review={review} />)}
+        {props.reviews.map((review) => <ReviewListItem key={review.id} review={review} />)}
       </Row>
     </Container>
   )
