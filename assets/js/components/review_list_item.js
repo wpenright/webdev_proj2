@@ -5,12 +5,13 @@ export default function ReviewListItem(props) {
   let review = props.review;
   return (
     <Card>
-      <CardTitle>
-        Review By: <a href={"/users/" + props.review.user.id} className="nav-link" exact={"true"}>
+      <CardTitle> Review By: <a href={"/users/" + props.review.user.id} >
           { props.review.user.name }
         </a>
       </CardTitle>
-      <CardTitle>Review Of: { review.movie.title }</CardTitle>
+      <CardTitle>Review Of: <a href={"/movies/" + props.movie.id} >
+           { review.movie.title }
+        </a></CardTitle>
       <CardTitle>Review Rating: { review.rating }</CardTitle>
       <CardBody>
         <div>
