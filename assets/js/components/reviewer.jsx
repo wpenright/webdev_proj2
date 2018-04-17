@@ -46,9 +46,9 @@ let Reviewer = connect((state) => state)((props) => {
         } />
         <Route path="/movies/:movie_id" render={({match}) =>
           <MoviePage movie={_.filter(props.movies, (m) =>
-            match.params.movie_id == m.id )
+            match.params.movie_id == m.id )[0]
           } reviews={_.filter(props.reviews, (r) =>
-            match.params.movie_id == r.movie.id )[0]
+            match.params.movie_id == r.movie.id )
           }/>
         } />
       </div>
