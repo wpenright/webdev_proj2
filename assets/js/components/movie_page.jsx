@@ -2,13 +2,13 @@ import React from "react"
 import { Container, Row, Col } from "reactstrap"
 
 import ReviewForm from "./review_form"
-import ReviewListItem from "./review_list_item"
+import ReviewList from "./review_list"
 
 export default function ReviewPageprops(props) {
 
   return (
     <Container>
-      <ReviewForm movie={this.props.movie} />
+      <ReviewForm movie={props.movie} />
       <Row>
         <Col xs="3">
           <img src={ props.movie.poster_url} />
@@ -19,7 +19,7 @@ export default function ReviewPageprops(props) {
         </Col>
       </Row>
       <Row>
-        {props.reviews.map((review) => <ReviewListItem key={review.id} review={review} />)}
+        <ReviewList reviews={props.reviews} />
       </Row>
     </Container>
   )
