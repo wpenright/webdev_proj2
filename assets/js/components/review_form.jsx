@@ -28,7 +28,7 @@ function ReviewForm(props) {
 
   return (
     <div style={{padding: "4ex"}}>
-      <h2>New Review of {this.props.movie.title}</h2>
+      <h2>New Review of {props.movie.title}</h2>
       <FormGroup>
         <Label for="email">Rating</Label>
         <Input type="input" name="email" value={props.form.rating} onChange={update} />
