@@ -38,17 +38,17 @@ defmodule WebdevProj2.Reviews do
   def get_movie!(id), do: Repo.get!(Movie, id)
 
   @doc """
-  Gets a single movie.
+  Gets a single movie by its api_id.
 
   """
-  def get_movie(id), do: Repo.get(Movie, id)
+  def get_movie_by_api(id), do: Repo.get_by(Movie, api_id: id)
 
   @doc """
   Gets a single movie preloaded with reviews.
 
   """
-  def get_movie_preloaded(id) do
-    Repo.get(Movie, id)
+  def get_movie_by_api_preloaded(id) do
+    Repo.get_by(Movie, api_id: id)
     |> Repo.preload([reviews: [:user]])
   end
 
