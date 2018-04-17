@@ -99,12 +99,12 @@ function user_form(state = empty_user_form, action) {
   }
 }
 
-let empty_user_form = {
+let empty_review_form = {
   rating: "",
   review: "",
 }
 
-function review_form(state = empty_user_form, action) {
+function review_form(state = empty_review_form, action) {
   switch (action.type) {
     case 'REVIEW_UPDATE_FORM':
       return Object.assign({}, state, action.data)
