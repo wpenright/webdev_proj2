@@ -77,6 +77,21 @@ class APIServer {
       },
     });
   }
+
+  register_user(register) {
+    $.ajax("/api/v1/users", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify(register),
+      success: (resp) => {
+        store.dispatch({
+          type: 'NEW_USER',
+          token: resp,
+        });
+      }
+    });
+  }
 }
 
 export default new APIServer();
