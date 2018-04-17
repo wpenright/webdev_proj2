@@ -9,19 +9,21 @@ export default function MoviePage(props) {
   return (
     <Container>
       {props.movie &&
-        <ReviewForm movie={props.movie} />
-        <Row>
-          <Col xs="3">
-            <img src={ props.movie.poster_url} />
-          </Col>
-          <Col>
-            <h4> Review of { props.movie.title } </h4>
-            <h4> Released { props.year } </h4>
-          </Col>
-        </Row>
-        <Row>
-          <ReviewList reviews={props.reviews} />
-        </Row>
+        <div>
+          <ReviewForm movie={props.movie} />
+          <Row>
+            <Col xs="3">
+              <img src={ props.movie.poster_url} />
+            </Col>
+            <Col>
+              <h4> Review of { props.movie.title } </h4>
+              <h4> Released { props.year } </h4>
+            </Col>
+          </Row>
+          <Row>
+            <ReviewList reviews={props.reviews} />
+          </Row>
+        </div>
       </Container>
     }
   )
