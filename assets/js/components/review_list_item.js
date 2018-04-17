@@ -1,5 +1,5 @@
 import React from "react"
-import { Card, CardBody, CardTitle } from "reactstrap"
+import { Card, CardBody, CardTitle, NavLink } from "reactstrap"
 
 export default function ReviewListItem(props) {
   let review = props.review;
