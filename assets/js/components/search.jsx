@@ -20,6 +20,7 @@ function Search(props) {
   }
 
   function submitSearch(ev) {
+    ev.preventDefault()
     api.submit_search(props.input)
     console.log("submit", props.input)
   }
