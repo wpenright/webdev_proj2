@@ -5,7 +5,7 @@ import ReviewForm from "./review_form"
 import ReviewList from "./review_list"
 
 export default function MoviePage(props) {
-
+  console.log("movie page props", props)
   return (
     <Container>
       <ReviewForm movie={props.movie} />
