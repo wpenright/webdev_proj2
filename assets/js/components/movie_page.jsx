@@ -24,7 +24,7 @@ export default function MoviePage(props) {
             <ReviewList reviews={props.reviews} />
           </Row>
         </div>
-      </Container>
-    }
+      }
+    </Container>
   )
 }
