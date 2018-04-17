@@ -44,7 +44,7 @@ function Search(props) {
       }
       { props.status === "waiting" &&
         <div>
-          <p>Please Search</p>
+        
         </div>
       }
       { props.status === "have_results" &&

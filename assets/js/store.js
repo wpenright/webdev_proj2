@@ -99,11 +99,27 @@ function user_form(state = empty_user_form, action) {
   }
 }
 
+let empty_user_form = {
+  rating: "",
+  review: "",
+}
+
+function review_form(state = empty_user_form, action) {
+  switch (action.type) {
+    case 'REVIEW_UPDATE_FORM':
+      return Object.assign({}, state, action.data)
+    case 'SET_TOKEN':
+      return Object.assign({}, state, action.token)
+    default:
+      return state
+  }
+}
+
 function root_reducer(state0, action) {
   console.log("reducer", action)
   // {posts, users, form} is ES6 shorthand for
   // {posts: posts, users: users, form: form}
-  let reducer = combineReducers({login, reviews, search, token, users, user_form})
+  let reducer = combineReducers({login, review_form, reviews, search, token, users, user_form})
   let state1 = reducer(state0, action)
   console.log("state1", state1)
   return deepFreeze(state1)
