@@ -8,19 +8,21 @@ export default function MoviePage(props) {
   console.log("movie page props", props)
   return (
     <Container>
-      <ReviewForm movie={props.movie} />
-      <Row>
-        <Col xs="3">
-          <img src={ props.movie.poster_url} />
-        </Col>
-        <Col>
-          <h4> Review of { props.movie.title } </h4>
-          <h4> Released { props.year } </h4>
-        </Col>
-      </Row>
-      <Row>
-        <ReviewList reviews={props.reviews} />
-      </Row>
-    </Container>
+      {props.movie &&
+        <ReviewForm movie={props.movie} />
+        <Row>
+          <Col xs="3">
+            <img src={ props.movie.poster_url} />
+          </Col>
+          <Col>
+            <h4> Review of { props.movie.title } </h4>
+            <h4> Released { props.year } </h4>
+          </Col>
+        </Row>
+        <Row>
+          <ReviewList reviews={props.reviews} />
+        </Row>
+      </Container>
+    }
   )
 }
