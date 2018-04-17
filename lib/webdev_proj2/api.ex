@@ -1,8 +1,19 @@
 
 defmodule WebdevProj2.API do
 
+	# Search for movies matching the provided title
+	def search_movies(title) do
+		resp = HTTPoison.get!("http://www.omdbapi.com/?apikey=944d5561&s=#{title}")
+		data = Poison.decode!(resp.body)
+		
+		# TODO: Handle empty response
+
+		# Return the results of the search
+		data["Search"]
+	end
+
 	# Get the first matching imdb id for the given title search
-	def search_imdb_id(title) do
+	def first_match(title) do
 		resp = HTTPoison.get!("http://www.omdbapi.com/?apikey=944d5561&s=#{title}")
 		data = Poison.decode!(resp.body)
 
