@@ -1,15 +1,14 @@
 import React from "react"
-import { NavLink } from "react-router-dom"
-import { Card, CardBody, CardTitle, NavItem } from "reactstrap"
+import { Card, CardBody, CardTitle } from "reactstrap"
 
 export default function ReviewListItem(props) {
   let review = props.review;
   return (
     <Card>
       <CardTitle>
-        Review By: <NavItem><NavLink to={"/users/" + props.review.user.id} className="nav-link" exact={"true"}>
+        Review By: <a href={"/users/" + props.review.user.id} className="nav-link" exact={"true"}>
           { props.review.user.name }
-        </NavLink></NavItem>
+        </a>
       </CardTitle>
       <CardTitle>Review Of: { review.movie.title }</CardTitle>
       <CardTitle>Review Rating: { review.rating }</CardTitle>
