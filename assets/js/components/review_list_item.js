@@ -9,8 +9,8 @@ export default function ReviewListItem(props) {
           { props.review.user.name }
         </a>
       </CardTitle>
-      <CardTitle>Review Of: <a href={"/movies/" + props.movie.id} >
-           { review.movie.title }
+      <CardTitle>Review Of: <a href={"/movies/" + props.review.movie.id} >
+           { props.review.movie.title }
         </a></CardTitle>
       <CardTitle>Review Rating: { review.rating }</CardTitle>
       <CardBody>
