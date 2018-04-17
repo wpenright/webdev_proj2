@@ -7,7 +7,7 @@ export default function Result(props) {
     <Container>
       <Row>
         <Col xs="3">
-          <img src={ result.Poster } />
+          <img src={ result.Poster } width={"100%"} height={"100%"}/>
         </Col>
         <Col xs="auto">
           <h4>Result Title: { result.Title }</h4>

@@ -7,7 +7,7 @@ import Feed from "./feed"
 import Nav from "./nav"
 import ReviewList from "./review_list"
 import ReviewListItem from "./review_list_item"
-import ReviewPage from "./review_page"
+import MoviePage from "./movie_page"
 import Search from "./search"
 import Users from "./users"
 
@@ -42,12 +42,14 @@ let Reviewer = connect((state) => state)((props) => {
           } />
         } />
         <Route path="/reviews" exact={true} render={() =>
-          <ReviewList reviews={props.reviews} />
+          <ReviewList reviews={props.reviews} movieLinks={true}/>
         } />
-        <Route path="/reviews/:review_id" render={({match}) =>
-          <ReviewPage review={_.filter(props.reviews, (r) =>
-            match.params.review_id == r.id )
-          } />
+        <Route path="/movies/:movie_id" render={({match}) =>
+          <MoviePage movie={_.filter(props.movies, (m) =>
+            match.params.movie_id == m.id )[0]
+          } reviews={_.filter(props.reviews, (r) =>
+            match.params.movie_id == r.movie.id )
+          }/>
         } />
       </div>
     </Router>
