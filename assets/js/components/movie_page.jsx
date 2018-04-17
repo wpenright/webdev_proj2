@@ -4,7 +4,7 @@ import { Container, Row, Col } from "reactstrap"
 import ReviewForm from "./review_form"
 import ReviewList from "./review_list"
 
-export default function ReviewPageprops(props) {
+export default function MoviePage(props) {
 
   return (
     <Container>
