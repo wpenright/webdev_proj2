@@ -51,7 +51,7 @@ class APIServer {
       success: (resp) => {
         store.dispatch({
           type: "MOVIES_ADD",
-          movies: resp.data,
+          movie: resp.data,
         });
       },
     });
