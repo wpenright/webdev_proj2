@@ -10,7 +10,12 @@ export default function Result(props) {
           <img src={ result.Poster } width={"100%"} height={"100%"}/>
         </Col>
         <Col xs="auto">
-          <h4>Result Title: { result.Title }</h4>
+          <h4>
+            { "Result Title: " }
+            <a href={"/movies/" + result.imdbID} >
+               { result.Title }
+            </a>
+          </h4>
           <h4>Year Released: { result.Year }</h4>
           <h4>Result Type: { result.Type }</h4>
         </Col>
