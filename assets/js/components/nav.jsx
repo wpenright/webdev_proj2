@@ -52,7 +52,7 @@ function Nav(props) {
     session_info = <Session token={props.token} />
   }
   else {
-    session_info = <LoginForm />
+    session_info = (<div><p><NavLink to="/register" href="#">Create User</NavLink></p><LoginForm /></div>)
   }
 
   return (

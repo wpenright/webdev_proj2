@@ -23,6 +23,7 @@ defmodule WebdevProj2Web.Router do
     get "/users", PageController, :index
     get "/users/:user_id", PageController, :index
     get "/feed", PageController, :index
+    get "/register", PageController, :index
   end
 
   # Other scopes may use custom stacks.

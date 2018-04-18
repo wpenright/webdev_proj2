@@ -10,6 +10,7 @@ import ReviewListItem from "./review_list_item"
 import MoviePage from "./movie_page"
 import Search from "./search"
 import Users from "./users"
+import UserForm from './user-form'
 
 export default function reviewer_init(store) {
   ReactDOM.render(
@@ -50,6 +51,9 @@ let Reviewer = connect((state) => state)((props) => {
           } reviews={_.filter(props.reviews, (r) =>
             match.params.movie_id == r.movie.id )
           }/>
+        } />
+      <Route path="/register" exact={true} render={() =>
+          <UserForm />
         } />
       </div>
     </Router>
