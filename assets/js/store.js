@@ -8,7 +8,7 @@ function movies(state = [], action) {
   case 'MOVIES_ADD':
     console.log("current state", state)
     console.log("new movie", action.movie)
-    return [...action.movie, ...state]
+    return [action.movie, ...state]
   default:
     return state
   }
