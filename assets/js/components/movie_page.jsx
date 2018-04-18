@@ -30,7 +30,7 @@ export default function MoviePage(props) {
                 <h4> Directed By: { props.movie.director } </h4>
                 <h4> IMDB Rating: { props.movie.rating } </h4>
                 <h4> Runtime: { props.movie.runtime } </h4>
-                <h4> Plot Summary: { props.movie.summary } </h4>
+                <h4> Plot Summary: <p>{ props.movie.summary }</p> </h4>
               </Col>
             </Row>
             <Row>
