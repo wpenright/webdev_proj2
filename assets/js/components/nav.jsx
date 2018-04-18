@@ -26,12 +26,10 @@ let LoginForm = connect(({login}) => {return {login}})((props) => {
         <FormGroup>
           <Input type="text" name="email" placeholder="email"
                  value={props.login.email} onChange={update} />
-        </FormGroup>
-        <FormGroup>
           <Input type="password" name="password" placeholder="password"
                  value={props.login.password} onChange={update} />
-        </FormGroup>
         <Button onClick={create_token}>Log In</Button>
+      </FormGroup>
       </Form>
     </div>
   )
