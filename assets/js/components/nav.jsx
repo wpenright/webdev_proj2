@@ -38,7 +38,9 @@ let LoginForm = connect(({login}) => {return {login}})((props) => {
 let Session = connect(({token}) => {return {token}})((props) => {
 
   function delete_token(ev) {
-    api.submit_logout(props.token)
+    props.dispatch({
+      type: 'CLEAR_TOKEN',
+    });
   }
 
   return (
