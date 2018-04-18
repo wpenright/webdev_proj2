@@ -8,6 +8,8 @@ defmodule WebdevProj2.Repo.Migrations.CreateMovies do
       add :runtime, :string
       add :poster, :string
       add :summary, :string
+      add :director, :string
+      add :rating, :string
 
       timestamps()
     end

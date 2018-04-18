@@ -21,8 +21,11 @@ defmodule WebdevProj2.Accounts.User do
 
   @doc false
   def changeset(user, attrs) do
+    password_hash = Comeonin.Argon2.hashpwsalt(attrs["password"])
+    attrs = Map.put(attrs, "password_hash", password_hash)
     user
-    |> cast(attrs, [:name, :email, :password])
-    |> validate_required([:name, :email])
+    |> cast(attrs, [:name, :email, :password_hash])
+    |> unique_constraint(:unique_email, name: :unique_email_index)
+    |> validate_required([:name, :email, :password_hash])
   end
 end

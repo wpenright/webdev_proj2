@@ -11,7 +11,7 @@ defmodule WebdevProj2Web.FollowController do
     render(conn, "index.json", follows: follows)
   end
 
-  def create(conn, %{"follow" => follow_params}) do
+  def create(conn, follow_params = %{}) do
     with {:ok, %Follow{} = follow} <- Accounts.create_follow(follow_params) do
       conn
       |> put_status(:created)

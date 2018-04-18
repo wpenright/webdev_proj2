@@ -8,7 +8,7 @@ class APIServer {
       contentType: "application/json; charset=UTF-8",
       success: (resp) => {
         store.dispatch({
-          type: "USER_LIST",
+          type: "USERS_LIST",
           users: resp.data,
         });
       },
@@ -75,6 +75,41 @@ class APIServer {
           token: resp,
         });
       },
+    });
+  }
+
+  submit_logout(data) {
+    // Delete stored token
+    console.log("DO LOGOUT");
+  }
+
+  register_user(register) {
+    $.ajax("/api/v1/users", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify(register),
+      success: (resp) => {
+        store.dispatch({
+          type: 'NEW_USER',
+          token: resp,
+        });
+      }
+    });
+  }
+
+  add_follow(follow) {
+    $.ajax("/api/v1/follows", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify(follow),
+      success: (resp) => {
+        store.dispatch({
+          type: 'NEW_FOLLOW',
+          token: resp,
+        });
+      }
     });
   }
 }

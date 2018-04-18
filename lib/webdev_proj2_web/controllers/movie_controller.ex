@@ -3,6 +3,7 @@ defmodule WebdevProj2Web.MovieController do
 
   alias WebdevProj2.Reviews
   alias WebdevProj2.Reviews.Movie
+  alias WebdevProj2.API
 
   action_fallback WebdevProj2Web.FallbackController
 
@@ -38,5 +39,12 @@ defmodule WebdevProj2Web.MovieController do
     with {:ok, %Movie{}} <- Reviews.delete_movie(movie) do
       send_resp(conn, :no_content, "")
     end
+  end
+
+  def search(conn, %{"title" => title}) do
+	movies = API.search_movies(title)
+    json(conn, movies)
+	
+	# TODO: Return this data in the format expected by the front end
   end
 end

@@ -19,6 +19,8 @@ defmodule WebdevProj2Web.MovieView do
       runtime: movie.runtime,
       poster: movie.poster,
       summary: movie.summary,
+      director: movie.director,
+      rating: movie.rating,
       reviews: render_many(reviews, ReviewView, "review.json")}
   end
 end
