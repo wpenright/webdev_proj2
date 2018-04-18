@@ -65,8 +65,6 @@ class APIServer {
     $.ajax(url, {
       method: "get",
       success: (resp) => {
-        console.log("resp", resp)
-        console.log("resp search", resp["Search"])
         if (resp["Response"] === "False") {
           store.dispatch({
             type: "SEARCH_ERROR",
@@ -79,6 +77,21 @@ class APIServer {
           });
         }
       },
+    });
+  }
+
+  submit_review(review) {
+    $.ajax("/api/v1/reviews", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify(review),
+      success: (resp) => {
+          store.dispatch({
+            type: "REVIEW_ADD",
+            data: resp["review"],
+          });
+      }
     });
   }
 

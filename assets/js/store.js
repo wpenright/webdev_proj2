@@ -16,6 +16,8 @@ function reviews(state = [], action) {
   switch (action.type) {
   case 'REVIEW_LIST':
     return [...action.reviews]
+  case 'REVIEW_ADD':
+    return [action.review, ...state]
   default:
     return state
   }
