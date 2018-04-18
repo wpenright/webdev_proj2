@@ -50,13 +50,13 @@ function search(state = search_state, action) {
         status: "have_results",
         results: []
       }
-      return Object.assign({}, state, newResults)
+      return Object.assign({}, state, newResultError)
     case "SEARCH_SUCCESS":
       let newResultSuccess = {
         status: "have_results",
         results: [...action.data]
       }
-      return Object.assign({}, state, newResults)
+      return Object.assign({}, state, newResultSuccess)
     default:
       return state
   }
