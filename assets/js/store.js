@@ -45,7 +45,13 @@ function search(state = search_state, action) {
         results: [],
       }
       return Object.assign({}, state, newData)
-    case "SEARCH_END":
+    case "SEARCH_SUCCESS":
+      let newResults = {
+        status: "have_results",
+        results: []
+      }
+      return Object.assign({}, state, newResults)
+    case "SEARCH_SUCCESS":
       let newResults = {
         status: "have_results",
         results: [...action.data]
