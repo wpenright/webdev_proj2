@@ -24,7 +24,7 @@ function ReviewForm(props) {
   function submit(ev) {
     const newForm = Object.assign({}, props.form, {
       movie_id: props.movie.api_id,
-      user_id: props.user_id,
+      user_id: props.form.data.user_id,
     })
     api.submit_review(newForm)
     console.log(newForm)
