@@ -6,8 +6,6 @@ function movies(state = [], action) {
   case 'MOVIES_LIST':
     return [...action.movies]
   case 'MOVIES_ADD':
-    console.log("current state", state)
-    console.log("new movie", action.movie)
     return [action.movie, ...state]
   default:
     return state
@@ -41,7 +39,6 @@ let search_state = {
 function search(state = search_state, action) {
   switch (action.type) {
     case "SEARCH_UPDATE":
-      console.log("update", action.data)
       return Object.assign({}, state, action.data)
     case "SEARCH_START":
       let newData = {

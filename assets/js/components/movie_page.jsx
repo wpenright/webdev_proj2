@@ -23,11 +23,14 @@ export default function MoviePage(props) {
             <ReviewForm movie={props.movie} />
             <Row>
               <Col xs="3">
-                <img src={ props.movie.poster} />
+                <img src={ props.movie.poster} width={"100%"} height={"100%"} />
               </Col>
               <Col>
                 <h4> { props.movie.title } </h4>
-                <h4> Released { props.year } </h4>
+                <h4> Directed By: { props.movie.director } </h4>
+                <h4> IMDB Rating: { props.movie.rating } </h4>
+                <h4> Runtime: { props.movie.runtime } </h4>
+                <h4> Plot Summary: { props.movie.summary } </h4>
               </Col>
             </Row>
             <Row>
