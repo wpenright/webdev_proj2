@@ -78,6 +78,11 @@ class APIServer {
     });
   }
 
+  submit_logout(data) {
+    // Delete stored token
+    console.log("DO LOGOUT");
+  }
+
   register_user(register) {
     $.ajax("/api/v1/users", {
       method: "post",

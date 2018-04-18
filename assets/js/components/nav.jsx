@@ -38,9 +38,16 @@ let LoginForm = connect(({login}) => {return {login}})((props) => {
 })
 
 let Session = connect(({token}) => {return {token}})((props) => {
+
+  function delete_token(ev) {
+    api.submit_logout(props.token)
+  }
+
   return (
     <div className="navbar-text">
-      User Name = { props.token.data.user_name }
+      User Name = { props.token.data.user_name }   
+	  <span>   </span>
+	  <Button onClick={delete_token}> Log Out</Button>
     </div>
   )
 })
