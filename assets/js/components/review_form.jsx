@@ -22,7 +22,9 @@ function ReviewForm(props) {
   }
 
   function submit(ev) {
-    api.submit_review(props.form)
+    api.submit_review({
+      review: props.form
+    })
     console.log(props.form)
   }
 
