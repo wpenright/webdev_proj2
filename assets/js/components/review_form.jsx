@@ -22,7 +22,10 @@ function ReviewForm(props) {
   }
 
   function submit(ev) {
-    api.submit_review(Object.assign({}, props.form, { movie_id: props.movie.api_id })
+    api.submit_review(Object.assign({}, props.form, {
+      movie_id: props.movie.api_id,
+      user_id: props.user_id
+    })
     console.log(props.form)
   }
 
@@ -46,6 +49,7 @@ function state2props(state) {
   console.log("rerender@ReviewForm", state)
   return {
     form: state.review_form,
+    user_id: state.token.data.user_id,
   }
 }
 
