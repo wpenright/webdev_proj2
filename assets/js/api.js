@@ -8,7 +8,7 @@ class APIServer {
       contentType: "application/json; charset=UTF-8",
       success: (resp) => {
         store.dispatch({
-          type: "USER_LIST",
+          type: "USERS_LIST",
           users: resp.data,
         });
       },

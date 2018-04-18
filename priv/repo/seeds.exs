@@ -16,7 +16,7 @@ defmodule Seeds do
   alias WebdevProj2.Accounts.Follow
   alias WebdevProj2.Reviews.Movie
   alias WebdevProj2.Reviews.Review
-  
+
   def run do
     password = Comeonin.Argon2.hashpwsalt("securepw")
 
@@ -39,6 +39,7 @@ defmodule Seeds do
     Repo.delete_all(Review)
     Repo.insert!(%Review{movie_id: a.id, user_id: m.id, rating: 5, user_review: "A modern masterpiece."})
     Repo.insert!(%Review{movie_id: b.id, user_id: e.id, rating: 5, user_review: "I just know it's going to be great."})
+    Repo.insert!(%Review{movie_id: a.id, user_id: e.id, rating: 5, user_review: "I just know it's going to be great2."})
   end
 end
 
