@@ -10,5 +10,7 @@ defmodule WebdevProj2.Repo.Migrations.CreateUsers do
       timestamps()
     end
 
+    create unique_index(:users, :email, name: :unique_email_index)
+
   end
 end

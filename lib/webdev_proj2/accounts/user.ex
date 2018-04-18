@@ -25,6 +25,7 @@ defmodule WebdevProj2.Accounts.User do
     attrs = Map.put(attrs, "password_hash", password_hash)
     user
     |> cast(attrs, [:name, :email, :password_hash])
+    |> unique_constraint(:unique_email, name: :unique_email_index)
     |> validate_required([:name, :email, :password_hash])
   end
 end
