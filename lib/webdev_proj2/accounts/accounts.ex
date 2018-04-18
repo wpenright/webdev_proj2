@@ -35,7 +35,7 @@ defmodule WebdevProj2.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id) do 
+  def get_user!(id) do
     Repo.get!(User, id)
   end
 
@@ -121,6 +121,12 @@ defmodule WebdevProj2.Accounts do
     User.changeset(user, %{})
   end
 
+
+  def authorize_user(email, password) do
+    user = Repo.get_by(User, email: email)
+    Comeonin.Argon2.check_pass(user, password)
+  end
+
   alias WebdevProj2.Accounts.Follow
 
   @doc """
@@ -152,7 +158,7 @@ defmodule WebdevProj2.Accounts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_follow!(id) do 
+  def get_follow!(id) do
     Repo.get!(Follow, id)
     |> preload(:follower)
     |> preload(:followee)

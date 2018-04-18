@@ -24,12 +24,12 @@ let LoginForm = connect(({login}) => {return {login}})((props) => {
     <div className="navbar-text">
       <Form inline>
         <FormGroup>
-          <Input type="text" name="name" placeholder="name"
-                 value={props.login.name} onChange={update} />
+          <Input type="text" name="email" placeholder="email"
+                 value={props.login.email} onChange={update} />
         </FormGroup>
         <FormGroup>
-          <Input type="password" name="pass" placeholder="password"
-                 value={props.login.pass} onChange={update} />
+          <Input type="password" name="password" placeholder="password"
+                 value={props.login.password} onChange={update} />
         </FormGroup>
         <Button onClick={create_token}>Log In</Button>
       </Form>
@@ -40,7 +40,7 @@ let LoginForm = connect(({login}) => {return {login}})((props) => {
 let Session = connect(({token}) => {return {token}})((props) => {
   return (
     <div className="navbar-text">
-      User Name = { props.token.user_name }
+      User Name = { props.token.data.user_name }
     </div>
   )
 })
