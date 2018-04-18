@@ -22,16 +22,14 @@ let LoginForm = connect(({login}) => {return {login}})((props) => {
 
   return (
     <div className="navbar-text">
-      <Form inline>
+      <Form inline onSubmit={create_token}>
         <FormGroup>
           <Input type="text" name="email" placeholder="email"
                  value={props.login.email} onChange={update} />
-        </FormGroup>
-        <FormGroup>
           <Input type="password" name="password" placeholder="password"
                  value={props.login.password} onChange={update} />
-        </FormGroup>
         <Button onClick={create_token}>Log In</Button>
+      </FormGroup>
       </Form>
     </div>
   )
@@ -45,7 +43,7 @@ let Session = connect(({token}) => {return {token}})((props) => {
 
   return (
     <div className="navbar-text">
-      User Name = { props.token.data.user_name }   
+      Logged in As: { props.token.data.user_name }
 	  <span>   </span>
 	  <Button onClick={delete_token}> Log Out</Button>
     </div>

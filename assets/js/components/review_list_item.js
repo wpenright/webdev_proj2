@@ -1,19 +1,21 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import { Card, CardBody, CardTitle } from "reactstrap"
 
 export default function ReviewListItem(props) {
   let review = props.review;
   return (
     <Card>
-      <CardTitle> Review By: <a href={"/users/" + props.review.user.id} >
+      <CardTitle> Review By:
+        <Link to={"/users/" + props.review.user.id} >
           { props.review.user.name }
-        </a>
+        </Link>
       </CardTitle>
       <CardTitle>{"Review Of: "}
         {props.movieLink ?
-          <a href={"/movies/" + props.review.movie.id} >
-            { props.review.movie.title }
-          </a>
+          <Link to={"/movies/" + props.review.movie.id} >
+             { props.review.movie.title }
+           </Link>
           : props.review.movie.title
         }
       </CardTitle>

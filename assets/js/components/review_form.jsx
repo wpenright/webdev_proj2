@@ -30,12 +30,12 @@ function ReviewForm(props) {
     <div style={{padding: "4ex"}}>
       <h2>New Review of {props.movie.title}</h2>
       <FormGroup>
-        <Label for="email">Rating</Label>
-        <Input type="input" name="email" value={props.form.rating} onChange={update} />
+        <Label for="rating">Rating</Label>
+        <Input type="input" name="rating" value={props.form.rating} onChange={update} />
       </FormGroup>
       <FormGroup>
-        <Label for="name">Review</Label>
-        <Input type="text" name="name" value={props.form.review} onChange={update} />
+        <Label for="user_review">Review</Label>
+        <Input type="text" name="user_review" value={props.form.user_review} onChange={update} />
       </FormGroup>
       <Button onClick={submit} color="primary">Post</Button>
     </div>

@@ -43,6 +43,20 @@ class APIServer {
     });
   }
 
+  request_movie(id) {
+    $.ajax("/api/v1/movies/" + id, {
+      method: "get",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      success: (resp) => {
+        store.dispatch({
+          type: "MOVIES_ADD",
+          movie: resp.data,
+        });
+      },
+    });
+  }
+
   submit_search(search_field) {
     store.dispatch({
       type: "SEACH_START",
@@ -50,16 +64,34 @@ class APIServer {
     let url = "http://www.omdbapi.com/?apikey=944d5561&s=" + search_field
     $.ajax(url, {
       method: "get",
-      // dataType: "json",
-      // contentType: "application/json; charset=UTF-8",
       success: (resp) => {
-        console.log("resp", resp)
-        console.log("resp search", resp["Search"])
-        store.dispatch({
-          type: "SEARCH_END",
-          data: resp["Search"],
-        });
+        if (resp["Response"] === "False") {
+          store.dispatch({
+            type: "SEARCH_ERROR",
+            data: resp["Search"],
+          });
+        } else {
+          store.dispatch({
+            type: "SEARCH_SUCCESS",
+            data: resp["Search"],
+          });
+        }
       },
+    });
+  }
+
+  submit_review(review) {
+    $.ajax("/api/v1/reviews", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify({review: review}),
+      success: (resp) => {
+          store.dispatch({
+            type: "REVIEW_ADD",
+            data: resp["review"],
+          });
+      }
     });
   }
 

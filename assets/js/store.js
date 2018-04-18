@@ -4,27 +4,31 @@ import deepFreeze from "deep-freeze"
 function movies(state = [], action) {
   switch (action.type) {
   case 'MOVIES_LIST':
-    return [...action.movies];
+    return [...action.movies]
+  case 'MOVIES_ADD':
+    return [action.movie, ...state]
   default:
-    return state;
+    return state
   }
 }
 
 function reviews(state = [], action) {
   switch (action.type) {
   case 'REVIEW_LIST':
-    return [...action.reviews];
+    return [...action.reviews]
+  case 'REVIEW_ADD':
+    return [action.review, ...state]
   default:
-    return state;
+    return state
   }
 }
 
 function users(state = [], action) {
   switch (action.type) {
   case 'USERS_LIST':
-    return [...action.users];
+    return [...action.users]
   default:
-    return state;
+    return state
   }
 }
 
@@ -37,7 +41,6 @@ let search_state = {
 function search(state = search_state, action) {
   switch (action.type) {
     case "SEARCH_UPDATE":
-      console.log("update", action.data)
       return Object.assign({}, state, action.data)
     case "SEARCH_START":
       let newData = {
@@ -45,12 +48,18 @@ function search(state = search_state, action) {
         results: [],
       }
       return Object.assign({}, state, newData)
-    case "SEARCH_END":
-      let newResults = {
+    case "SEARCH_ERROR":
+      let newResultError = {
+        status: "have_results",
+        results: []
+      }
+      return Object.assign({}, state, newResultError)
+    case "SEARCH_SUCCESS":
+      let newResultSuccess = {
         status: "have_results",
         results: [...action.data]
       }
-      return Object.assign({}, state, newResults)
+      return Object.assign({}, state, newResultSuccess)
     default:
       return state
   }
