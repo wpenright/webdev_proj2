@@ -92,8 +92,6 @@ function user_form(state = empty_user_form, action) {
       return Object.assign({}, state, action.data)
     case 'USER_CLEAR_FORM':
       return Object.assign({}, state, empty_user_form)
-    case 'SET_TOKEN':
-      return Object.assign({}, state, action.token)
     default:
       return state
   }
