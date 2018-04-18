@@ -92,6 +92,21 @@ class APIServer {
       }
     });
   }
+
+  add_follow(follow) {
+    $.ajax("/api/v1/follows", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify(follow),
+      success: (resp) => {
+        store.dispatch({
+          type: 'NEW_FOLLOW',
+          token: resp,
+        });
+      }
+    });
+  }
 }
 
 export default new APIServer();
