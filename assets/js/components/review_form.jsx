@@ -22,7 +22,14 @@ function ReviewForm(props) {
   }
 
   function submit(ev) {
+<<<<<<< Updated upstream
     api.submit_review(props.form)
+=======
+    api.submit_review(Object.assign({}, props.form, {
+      movie_id: props.movie.api_id,
+      user_id: props.user_id,
+    }))
+>>>>>>> Stashed changes
     console.log(props.form)
   }
 
