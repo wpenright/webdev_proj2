@@ -34,8 +34,8 @@ function ReviewForm(props) {
         <Input type="input" name="rating" value={props.form.rating} onChange={update} />
       </FormGroup>
       <FormGroup>
-        <Label for="review">Review</Label>
-        <Input type="text" name="review" value={props.form.review} onChange={update} />
+        <Label for="user_review">Review</Label>
+        <Input type="text" name="user_review" value={props.form.user_review} onChange={update} />
       </FormGroup>
       <Button onClick={submit} color="primary">Post</Button>
     </div>
