@@ -22,7 +22,7 @@ function ReviewForm(props) {
   }
 
   function submit(ev) {
-    api.submit_review(props.form)
+    api.submit_review(Object.assign({}, props.form, { movie_id: props.movie.api_id })
     console.log(props.form)
   }
 
