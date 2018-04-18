@@ -4,31 +4,31 @@ import deepFreeze from "deep-freeze"
 function movies(state = [], action) {
   switch (action.type) {
   case 'MOVIES_LIST':
-    return [...action.movies];
+    return [...action.movies]
   case 'MOVIES_ADD':
     console.log("current state", state)
     console.log("new movie", action.movie)
     return [...action.movie, ...state]
   default:
-    return state;
+    return state
   }
 }
 
 function reviews(state = [], action) {
   switch (action.type) {
   case 'REVIEW_LIST':
-    return [...action.reviews];
+    return [...action.reviews]
   default:
-    return state;
+    return state
   }
 }
 
 function users(state = [], action) {
   switch (action.type) {
   case 'USERS_LIST':
-    return [...action.users];
+    return [...action.users]
   default:
-    return state;
+    return state
   }
 }
 
