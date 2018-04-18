@@ -13,7 +13,7 @@ export default function Result(props) {
         <Col xs="auto">
           <h4>
             { "Result Title: " }
-            <Link to={href={"/movies/" + result.imdbID}} >
+            <Link to={"/movies/" + result.imdbID} >
                { result.Title }
              </Link>
           </h4>
