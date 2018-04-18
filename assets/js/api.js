@@ -122,6 +122,7 @@ class APIServer {
       contentType: "application/json; charset=UTF-8",
       data: JSON.stringify(register),
       success: (resp) => {
+        window.location.replace('/');
         store.dispatch({
           type: 'NEW_USER',
           token: resp,
