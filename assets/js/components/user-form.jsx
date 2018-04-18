@@ -22,7 +22,7 @@ function UserForm(props) {
   }
 
   function submit(ev) {
-    api.submit_user(props.form)
+    api.register_user(props.form)
     console.log(props.form)
   }
 

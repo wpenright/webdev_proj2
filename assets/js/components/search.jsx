@@ -20,6 +20,7 @@ function Search(props) {
   }
 
   function submitSearch(ev) {
+    ev.preventDefault()
     api.submit_search(props.input)
     console.log("submit", props.input)
   }
@@ -43,7 +44,7 @@ function Search(props) {
       }
       { props.status === "waiting" &&
         <div>
-          <p>Please Search</p>
+        
         </div>
       }
       { props.status === "have_results" &&

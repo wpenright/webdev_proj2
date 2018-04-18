@@ -18,9 +18,12 @@ defmodule WebdevProj2Web.Router do
 
     get "/", PageController, :index
     get "/search", PageController, :index
-    get "/movies", PageController, :index
+    get "/reviews", PageController, :index
+    get "/movies/:movies_id", PageController, :index
     get "/users", PageController, :index
+    get "/users/:user_id", PageController, :index
     get "/feed", PageController, :index
+    get "/register", PageController, :index
   end
 
   # Other scopes may use custom stacks.
@@ -28,6 +31,7 @@ defmodule WebdevProj2Web.Router do
     pipe_through :api
 
 	get "/search", MovieController, :search
+    post "/token", TokenController, :create
     resources "/users", UserController, except: [:new, :edit]
     resources "/follows", FollowController, except: [:new, :edit]
     resources "/movies", MovieController, except: [:new, :edit]
