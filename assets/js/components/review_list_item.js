@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import { Card, CardBody, CardTitle } from "reactstrap"
 
 export default function ReviewListItem(props) {
@@ -11,9 +12,9 @@ export default function ReviewListItem(props) {
       </CardTitle>
       <CardTitle>{"Review Of: "}
         {props.movieLink ?
-          <a href={"/movies/" + props.review.movie.id} >
-            { props.review.movie.title }
-          </a>
+          <Link to={"/movies/" + props.review.movie.id} >
+             { props.review.movie.title }
+           </Link>
           : props.review.movie.title
         }
       </CardTitle>

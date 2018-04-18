@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 import { Container, Row, Col } from "reactstrap"
 
 export default function Result(props) {
@@ -12,9 +13,9 @@ export default function Result(props) {
         <Col xs="auto">
           <h4>
             { "Result Title: " }
-            <a href={"/movies/" + result.imdbID} >
+            <Link to={href={"/movies/" + result.imdbID}} >
                { result.Title }
-            </a>
+             </Link>
           </h4>
           <h4>Year Released: { result.Year }</h4>
           <h4>Result Type: { result.Type }</h4>

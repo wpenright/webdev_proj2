@@ -5,6 +5,8 @@ function movies(state = [], action) {
   switch (action.type) {
   case 'MOVIES_LIST':
     return [...action.movies];
+  case 'ADD_MOVIE':
+    return [...action.movie, ...state]
   default:
     return state;
   }

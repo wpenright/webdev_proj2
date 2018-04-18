@@ -43,6 +43,20 @@ class APIServer {
     });
   }
 
+  request_movie(id) {
+    $.ajax("/api/v1/movies/" + id, {
+      method: "get",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      success: (resp) => {
+        store.dispatch({
+          type: "MOVIES_ADD",
+          movies: resp.data,
+        });
+      },
+    });
+  }
+
   submit_search(search_field) {
     store.dispatch({
       type: "SEACH_START",
