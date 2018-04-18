@@ -108,7 +108,7 @@ function user_form(state = empty_user_form, action) {
 
 let empty_review_form = {
   rating: "",
-  review: "",
+  user_review: "",
 }
 
 function review_form(state = empty_review_form, action) {
