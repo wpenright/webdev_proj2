@@ -35,19 +35,26 @@ defmodule WebdevProj2.Reviews do
       ** (Ecto.NoResultsError)
 
   """
-  def get_movie!(id), do: Repo.get!(Movie, id)
+  def get_movie!(id), do
+    populate_movie(id)
+    Repo.get!(Movie, id)
+  end
 
   @doc """
   Gets a single movie.
 
   """
-  def get_movie(id), do: Repo.get(Movie, id)
+  def get_movie(id), do
+    populate_movie(id)
+    Repo.get(Movie, id)
+  end
 
   @doc """
   Gets a single movie preloaded with reviews.
 
   """
   def get_movie_preloaded(id) do
+    populate_movie(id)
     Repo.get(Movie, id)
     |> Repo.preload([reviews: [:user]])
   end
@@ -225,4 +232,35 @@ defmodule WebdevProj2.Reviews do
   def change_review(%Review{} = review) do
     Review.changeset(review, %{})
   end
+
+  alias WebdevProj2.API
+
+  # If the movie with the given id is not already in the database, grab the data from the API
+  def populate_movie(id) do
+    # Check to see if the given movie is already in the db
+    m = Repo.get(Movie, id)
+
+    # If the movie was not found
+    if m == nil do
+      data = API.get_movie_data(id)
+
+      # TODO: Update these field names to match the schema once it is finalized
+      attrs = %{
+        # id
+        # title
+        # director
+        # runtime
+        # poster
+        # summary
+        # rating
+      }
+
+      %Movie{}
+      |> Movie.changeset(attrs)
+      |> Repo.insert()
+    end
+    # Else do nothing
+
+  end
+
 end
