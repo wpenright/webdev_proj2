@@ -38,7 +38,10 @@ class APIServer {
         store.dispatch({
           type: "FEED_LIST",
           reviews: resp.data,
-
+        });
+      }
+    });
+  }
 
   request_follows() {
     $.ajax("/api/v1/follows", {
