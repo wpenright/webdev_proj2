@@ -11,6 +11,8 @@ defmodule WebdevProj2Web.FollowView do
   end
 
   def render("follow.json", %{follow: follow}) do
-    %{id: follow.id}
+    %{id: follow.id,
+      follower_id: follow.follower_id,
+      followee_id: follow.followee_id}
   end
 end
