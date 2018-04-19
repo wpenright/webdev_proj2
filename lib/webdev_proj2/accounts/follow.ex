@@ -15,8 +15,8 @@ defmodule WebdevProj2.Accounts.Follow do
   def changeset(follow, attrs) do
     follow
     |> cast(attrs, [:follower_id, :followee_id])
-    |> cast_assoc(attrs, :follower)
-    |> cast_assoc(attrs, :followee)
     |> validate_required([:follower_id, :followee_id])
+    |> foreign_key_constraint(:follower_id)
+    |> foreign_key_constraint(:followee_id)
   end
 end

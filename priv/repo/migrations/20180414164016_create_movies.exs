@@ -14,5 +14,7 @@ defmodule WebdevProj2.Repo.Migrations.CreateMovies do
       timestamps()
     end
 
+    create unique_index(:movies, :api_id, name: :unique_api_id_index)
+
   end
 end

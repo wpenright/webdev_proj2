@@ -20,6 +20,7 @@ defmodule WebdevProj2.Reviews.Movie do
   def changeset(movie, attrs) do
     movie
     |> cast(attrs, [:title, :api_id, :runtime, :poster, :summary, :director, :rating])
+    |> unique_constraint(:unique_api_id, name: :unique_api_id_index)
     |> validate_required([:title, :api_id])
   end
 end

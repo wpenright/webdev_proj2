@@ -6,7 +6,7 @@ defmodule WebdevProj2.Repo.Migrations.CreateReviews do
       add :rating, :integer, null: false
       add :user_review, :string, null: false
       add :user_id, references(:users, on_delete: :nothing), null: false
-      add :movie_id, references(:movies, on_delete: :delete_all), null: false
+      add :movie_id, references(:movies, column: :api_id, type: :string, on_delete: :delete_all), null: false
 
       timestamps()
     end
