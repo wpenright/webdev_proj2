@@ -81,6 +81,7 @@ class APIServer {
   }
 
   submit_review(review) {
+    console.log("review sent", review)
     $.ajax("/api/v1/reviews", {
       method: "post",
       dataType: "json",
