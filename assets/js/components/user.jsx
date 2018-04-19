@@ -6,17 +6,12 @@ import api from "../api"
 export default function User(params) {
 
   function submit(ev) {
-    console.log(params.current_user)
     let follow = {follower_id:params.current_user.data.user_id, followee_id:params.user.id};
     api.add_follow(follow);
-    console.log(params);
   }
 
-  function deleteFollow(ev) {
-    console.log(params.current_user)
-    let follow = {follower_id:params.current_user.data.user_id, followee_id:params.user.id};
-    api.delete_follow(follow);
-    console.log(params);
+  function deleteFollow(follow_id) {
+    api.delete_follow(follow_id);
   }
 
   let alreadyFollows = false
@@ -45,12 +40,15 @@ export default function User(params) {
       </div>
     )
   } else {
+    const follow_id = params.follows.filter((f) =>
+      ff.followee_id === params.user.id && ff.follower_id === params.current_user.data.user_id
+    )[0].id
     return (
       <div>
         <p>
           <Link to={"/users/" + params.user.id}>{ params.user.name }</Link>
            -
-           <Button onClick={submit}>Follow</Button>
+           <Button onClick={() => submit(follow_id)}>Follow</Button>
          </p>
       </div>
     )
