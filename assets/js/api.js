@@ -89,7 +89,7 @@ class APIServer {
       success: (resp) => {
           store.dispatch({
             type: "REVIEW_ADD",
-            data: resp,
+            review: resp.data,
           });
       }
     });

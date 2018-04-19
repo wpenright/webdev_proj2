@@ -17,6 +17,7 @@ function reviews(state = [], action) {
   case 'REVIEW_LIST':
     return [...action.reviews]
   case 'REVIEW_ADD':
+    console.log("review", action.review)
     return [action.review, ...state]
   default:
     return state
