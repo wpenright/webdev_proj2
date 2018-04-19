@@ -180,10 +180,16 @@ defmodule WebdevProj2.Reviews do
 
   """
   def create_review(attrs \\ %{}) do
-    %Review{}
+    toReturn = %Review{}
     |> Review.changeset(attrs)
     |> Repo.insert()
-    |> Repo.preload([:user, :movie])
+    IO.puts("-------------")
+    IO.inspect(toReturn)
+    IO.puts("-------------")
+    IO.inspect(toReturn[:review])
+    Repo.preload(toReturn[:review][:user, :movie])
+    IO.puts("-------------")
+    toReturn
   end
 
   @doc """
