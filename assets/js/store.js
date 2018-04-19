@@ -68,7 +68,6 @@ function search(state = search_state, action) {
       }
       return Object.assign({}, state, newResultError)
     case "SEARCH_SUCCESS":
-      console.log("data", action.data)
       let newResultSuccess = {
         status: "have_results",
         results: [...action.data]
