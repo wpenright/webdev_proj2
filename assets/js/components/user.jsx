@@ -9,18 +9,52 @@ export default function User(params) {
     console.log(params.current_user)
     let follow = {follower_id:params.current_user.user_id, followee_id:params.user.id};
     api.add_follow(follow);
-    console.log(params);
   }
 
-  let user = <p><Link to={"/users/" + params.user.id}>{ params.user.name }</Link> - <Button onClick={submit}>Follow</Button></p>
-
-  if (params.current_user.token === null) {
-    user = <p><Link to={"/users/" + params.user.id}>{ params.user.name }</Link></p>
+  function deleteFollow(follow_id) {
+    api.delete_follow(follow_id);
   }
 
-  return (
-    <div>
-      { user }
-    </div>
-  )
+  let alreadyFollows = false
+  if (params.current_user != undefined || params.current_user != null) {
+    params.follows.forEach(function(ff) {
+      if (ff.followee_id === params.user.id && ff.follower_id === params.current_user.data.user_id) {
+        alreadyFollows = true
+      }
+    })
+  }
+
+  if (params.current_user === null) {
+    return (
+      <div>
+        <p><Link to={"/users/" + params.user.id}>{ params.user.name }</Link></p>
+      </div>
+    )
+  } else if (alreadyFollows) {
+    const follows = params.follows.filter((ff) =>
+      ff.followee_id === params.user.id && ff.follower_id === params.current_user.data.user_id
+    )
+    const follow_id = follows[0].id
+
+    return (
+      <div>
+        <p>
+          <Link to={"/users/" + params.user.id}>{ params.user.name }</Link>
+           -
+           <Button onClick={() => deleteFollow(follow_id)}>UnFollow</Button>
+         </p>
+      </div>
+    )
+  } else {
+
+    return (
+      <div>
+        <p>
+          <Link to={"/users/" + params.user.id}>{ params.user.name }</Link>
+           -
+           <Button onClick={submit}>Follow</Button>
+         </p>
+      </div>
+    )
+  }
 }

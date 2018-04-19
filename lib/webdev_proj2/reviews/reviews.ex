@@ -165,14 +165,14 @@ defmodule WebdevProj2.Reviews do
       ** (Ecto.NoResultsError)
 
   """
-  def get_review!(id) do 
+  def get_review!(id) do
     Repo.get!(Review, id)
     |> Repo.preload([:user, :movie])
   end
 
   @doc """
   Gets a single review.
-    
+
   """
   def get_review(id) do
     Repo.get(Review, id)
@@ -192,9 +192,12 @@ defmodule WebdevProj2.Reviews do
 
   """
   def create_review(attrs \\ %{}) do
-    %Review{}
+    toReturn = %Review{}
     |> Review.changeset(attrs)
     |> Repo.insert()
+
+    withLoaded = Repo.preload(elem(toReturn, 1), [:user, :movie])
+    {elem(toReturn, 0), withLoaded}
   end
 
   @doc """
