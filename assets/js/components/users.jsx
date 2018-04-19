@@ -19,7 +19,7 @@ export default function Users(props) {
   }
 
   users = users.map((uu) => <User key={uu.id} current_user={props.current_user} user={uu}
-                                  follows={params.follows} />)
+                                  follows={props.follows} />)
 
   return (
     <div>
