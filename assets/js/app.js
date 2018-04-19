@@ -27,5 +27,6 @@ $(function() {
   api.request_reviews()
   api.request_users()
   api.request_movies()
+  api.request_follows()
   reviewer_init(store)
 })

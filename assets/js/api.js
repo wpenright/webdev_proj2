@@ -29,6 +29,20 @@ class APIServer {
     });
   }
 
+  request_follows() {
+    $.ajax("/api/v1/follows", {
+      method: "get",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      success: (resp) => {
+        store.dispatch({
+          type: "FOLLOW_LIST",
+          follows: resp.data,
+        });
+      },
+    });
+  }
+
   request_movies() {
     $.ajax("/api/v1/movies", {
       method: "get",
@@ -61,27 +75,20 @@ class APIServer {
     store.dispatch({
       type: "SEACH_START",
     })
-    let url = "http://www.omdbapi.com/?apikey=944d5561&s=" + search_field
-    $.ajax(url, {
+    $.ajax("/api/v1/search/" + search_field, {
       method: "get",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
       success: (resp) => {
-        if (resp["Response"] === "False") {
-          store.dispatch({
-            type: "SEARCH_ERROR",
-            data: resp["Search"],
-          });
-        } else {
           store.dispatch({
             type: "SEARCH_SUCCESS",
-            data: resp["Search"],
+            data: resp,
           });
         }
-      },
-    });
+      });
   }
 
   submit_review(review) {
-    console.log("review sent", review)
     $.ajax("/api/v1/reviews", {
       method: "post",
       dataType: "json",
@@ -90,7 +97,7 @@ class APIServer {
       success: (resp) => {
           store.dispatch({
             type: "REVIEW_ADD",
-            data: resp["review"],
+            review: resp.data,
           });
       }
     });
@@ -135,8 +142,22 @@ class APIServer {
       data: JSON.stringify(follow),
       success: (resp) => {
         store.dispatch({
-          type: 'NEW_FOLLOW',
-          token: resp,
+          type: 'FOLLOW_ADD',
+          follow: resp,
+        });
+      }
+    });
+  }
+
+  delete_follow(follow_id) {
+    $.ajax("/api/v1/follows/" + follow_id, {
+      method: "delete",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      success: (resp) => {
+        store.dispatch({
+          type: 'FOLLOW_DELETE',
+          follow_id: follow_id,
         });
       }
     });
