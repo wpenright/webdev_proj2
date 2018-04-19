@@ -7,14 +7,14 @@ export default function User(params) {
 
   function submit(ev) {
     console.log(params.current_user)
-    let follow = {follower_id:params.current_user.data.user_id, followee_id:params.user.id};
+    let follow = {follower_id:params.current_user.user_id, followee_id:params.user.id};
     api.add_follow(follow);
     console.log(params);
   }
 
   let user = <p><Link to={"/users/" + params.user.id}>{ params.user.name }</Link> - <Button onClick={submit}>Follow</Button></p>
 
-  if (params.current_user === null) {
+  if (params.current_user.token === null) {
     user = <p><Link to={"/users/" + params.user.id}>{ params.user.name }</Link></p>
   }
 

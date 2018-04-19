@@ -11,14 +11,14 @@ export default function Users(props) {
   console.log(props)
   let users;
 
-  if (props.current_user) {
-    users = props.users.filter((uu) => props.current_user.data.user_id != uu.id);
+  if (props.current_user.token) {
+    users = props.users.filter((uu) => props.current_user.user_id != uu.id);
   }
   else {
     users = props.users;
   }
 
-  users = users.map((uu) => <User current_user={props.current_user} user={uu} />)
+  users = users.map((uu) => <User key={uu.id} current_user={props.current_user} user={uu} />)
 
   return (
     <div>
