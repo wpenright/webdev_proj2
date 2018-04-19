@@ -79,6 +79,7 @@ class APIServer {
       method: "get",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify({title: search_field}),
       success: (resp) => {
           store.dispatch({
             type: "SEARCH_SUCCESS",
