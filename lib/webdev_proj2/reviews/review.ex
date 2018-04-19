@@ -17,7 +17,9 @@ defmodule WebdevProj2.Reviews.Review do
   @doc false
   def changeset(review, attrs) do
     review
-    |> cast(attrs, [:rating, :user_review])
+    |> cast(attrs, [:rating, :user_review, :user_id, :movie_id])
+    |> cast_assoc(attrs, :user)
+    |> cast_assoc(attrs, :movie)
     |> validate_required([:rating, :user_review])
   end
 end
