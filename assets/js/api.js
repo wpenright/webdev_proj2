@@ -101,8 +101,7 @@ class APIServer {
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
       data: JSON.stringify({review: review}),
-      success: (resp) => {
-          console.log("MICHAEL", resp)
+      success: (resp) => {          
           store.dispatch({
             type: "REVIEW_ADD",
             data: resp.data,
