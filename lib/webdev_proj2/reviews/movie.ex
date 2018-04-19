@@ -11,7 +11,7 @@ defmodule WebdevProj2.Reviews.Movie do
     field :summary, :string
     field :director, :string
     field :rating, :string
-    has_many :reviews, Review, foreign_key: :movie_id
+    has_many :reviews, Review, foreign_key: :movie_id, references: :api_id
 
     timestamps()
   end
