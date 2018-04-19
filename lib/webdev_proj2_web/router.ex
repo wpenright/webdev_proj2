@@ -34,7 +34,8 @@ defmodule WebdevProj2Web.Router do
     post "/token", TokenController, :create
     resources "/users", UserController, except: [:new, :edit]
     resources "/follows", FollowController, except: [:new, :edit]
-    resources "/movies", MovieController, except: [:new, :edit]
+    # Movie record modification should not be accessible by client
+    resources "/movies", MovieController, only: [:index, :show]
     resources "/reviews", ReviewController, except: [:new, :edit]
   end
 end
