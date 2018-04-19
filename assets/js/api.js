@@ -76,22 +76,15 @@ class APIServer {
       type: "SEACH_START",
     })
     let url = "http://www.omdbapi.com/?apikey=944d5561&s=" + search_field
-    $.ajax(url, {
+    $.ajax("/api/v1/search/" + search_field, {
       method: "get",
       success: (resp) => {
-        if (resp["Response"] === "False") {
-          store.dispatch({
-            type: "SEARCH_ERROR",
-            data: resp["Search"],
-          });
-        } else {
           store.dispatch({
             type: "SEARCH_SUCCESS",
             data: resp["Search"],
           });
         }
-      },
-    });
+      });
   }
 
   submit_review(review) {

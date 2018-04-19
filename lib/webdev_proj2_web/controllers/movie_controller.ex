@@ -44,7 +44,7 @@ defmodule WebdevProj2Web.MovieController do
   def search(conn, %{"title" => title}) do
 	movies = API.search_movies(title)
     json(conn, movies)
-	
+
 	# TODO: Return this data in the format expected by the front end
   end
 end
