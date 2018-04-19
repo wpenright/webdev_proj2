@@ -30,25 +30,27 @@ export default function User(params) {
       </div>
     )
   } else if (alreadyFollows) {
+    const follow_id = params.follows.filter((f) =>
+      ff.followee_id === params.user.id && ff.follower_id === params.current_user.data.user_id
+    )[0].id
+    console.log("follows")
     return (
       <div>
         <p>
           <Link to={"/users/" + params.user.id}>{ params.user.name }</Link>
            -
-           <Button onClick={deleteFollow}>UnFollow</Button>
+           <Button onClick={() => deleteFollow(follow_id)}>UnFollow</Button>
          </p>
       </div>
     )
   } else {
-    const follow_id = params.follows.filter((f) =>
-      ff.followee_id === params.user.id && ff.follower_id === params.current_user.data.user_id
-    )[0].id
+
     return (
       <div>
         <p>
           <Link to={"/users/" + params.user.id}>{ params.user.name }</Link>
            -
-           <Button onClick={() => submit(follow_id)}>Follow</Button>
+           <Button onClick={submit}>Follow</Button>
          </p>
       </div>
     )
