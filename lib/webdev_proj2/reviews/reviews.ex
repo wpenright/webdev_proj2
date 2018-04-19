@@ -191,7 +191,7 @@ defmodule WebdevProj2.Reviews do
     IO.puts("-------------")
     IO.inspect(withLoaded)
     IO.puts("-------------")
-    toReturn
+    {elem(toReturn, 0), withLoaded}
   end
 
   @doc """
