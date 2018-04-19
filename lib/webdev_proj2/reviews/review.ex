@@ -16,10 +16,16 @@ defmodule WebdevProj2.Reviews.Review do
 
   @doc false
   def changeset(review, attrs) do
+    IO.puts "In review changeset"
     review
     |> cast(attrs, [:rating, :user_review, :user_id, :movie_id])
-    |> cast_assoc(attrs, :user)
-    |> cast_assoc(attrs, :movie)
-    |> validate_required([:rating, :user_review])
+    |> validate_required([:rating, :user_review, :user_id, :movie_id])
+    |> assoc_constraint(:user)
+    |> assoc_constraint(:movie)
+
+    #|> foreign_key_constraint(:user_id)
+    #|> foreign_key_constraint(:movie_id)
+    #|> cast_assoc(attrs, :user)
+    #|> cast_assoc(attrs, :movie)
   end
 end
