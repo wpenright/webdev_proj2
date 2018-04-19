@@ -45,7 +45,7 @@ let Session = connect(({token}) => {return {token}})((props) => {
 
   return (
     <div className="navbar-text">
-      Logged in As: { props.token.data.user_name }
+      Logged in as: { props.token.data.user_name }
 	  <span>   </span>
 	  <Button onClick={delete_token}> Log Out</Button>
     </div>

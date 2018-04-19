@@ -29,6 +29,21 @@ class APIServer {
     });
   }
 
+  request_feed(token) {
+    $.ajax("/api/v1/feed", {
+      method: "post",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      data: JSON.stringify({token: token}),
+      success: (resp) => {
+        store.dispatch({
+          type: "FEED_LIST",
+          reviews: resp.data,
+        });
+      },
+    });
+  }
+
   request_movies() {
     $.ajax("/api/v1/movies", {
       method: "get",
@@ -107,6 +122,7 @@ class APIServer {
           type: 'SET_TOKEN',
           token: resp,
         });
+        this.request_feed(resp.data.token);
       },
     });
   }

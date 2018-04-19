@@ -64,4 +64,10 @@ defmodule WebdevProj2Web.ReviewController do
       send_resp(conn, :no_content, "")
     end
   end
+
+  def feed(conn, %{"token" => token}) do
+    req_id = Auth.verify_token(conn, token)
+    reviews = Reviews.list_feed(req_id)
+    render(conn, "index.json", reviews: reviews)
+  end
 end

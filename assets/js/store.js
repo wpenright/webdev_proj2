@@ -12,6 +12,17 @@ function movies(state = [], action) {
   }
 }
 
+function feed(state = [], action) {
+  switch (action.type) {
+    case 'FEED_LIST':
+      return [...action.reviews]
+    case 'CLEAR_TOKEN':
+      return []
+    default:
+      return state
+  }
+}
+
 function reviews(state = [], action) {
   switch (action.type) {
   case 'REVIEW_LIST':
@@ -128,7 +139,7 @@ function root_reducer(state0, action) {
   console.log("reducer", action)
   // {posts, users, form} is ES6 shorthand for
   // {posts: posts, users: users, form: form}
-  let reducer = combineReducers({login, movies, review_form, reviews, search, token, users, user_form})
+  let reducer = combineReducers({login, feed, movies, review_form, reviews, search, token, users, user_form})
   let state1 = reducer(state0, action)
   console.log("state1", state1)
   return deepFreeze(state1)

@@ -1,9 +1,8 @@
-
 defmodule WebdevProj2.Auth do
 
 	# Verify the given token
 	def verify_token(conn, token) do
-		{status, user_id} = Phoenix.Token.verify(conn, "auth token", token, max_age: 86400)
+		{status, user_id} = Phoenix.Token.verify(conn, "authorization", token, max_age: 86400)
 
 		# If token is valid, return user_id
 		if status == :ok do

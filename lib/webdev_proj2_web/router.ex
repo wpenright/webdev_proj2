@@ -30,6 +30,7 @@ defmodule WebdevProj2Web.Router do
   scope "/api/v1", WebdevProj2Web do
     pipe_through :api
 
+    post "/feed", ReviewController, :feed
 	get "/search", MovieController, :search
     post "/token", TokenController, :create
     resources "/users", UserController, except: [:new, :edit]
