@@ -78,7 +78,7 @@ class APIServer {
     let url = "http://www.omdbapi.com/?apikey=944d5561&s=" + search_field
     $.ajax("/api/v1/search", {
       method: "get",
-      data: JSON.stringify({title: search_field})
+      data: JSON.stringify({title: search_field}),
       success: (resp) => {
           store.dispatch({
             type: "SEARCH_SUCCESS",
