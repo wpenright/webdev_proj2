@@ -28,7 +28,7 @@ function follows(state = [], action) {
   case 'FOLLOW_LIST':
     return [...action.follows]
   case 'FOLLOW_ADD':
-    return [action.follows, ...state]
+    return [action.follow, ...state]
   default:
     return state
   }

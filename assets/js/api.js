@@ -148,7 +148,7 @@ class APIServer {
       data: JSON.stringify(follow),
       success: (resp) => {
         store.dispatch({
-          type: 'NEW_FOLLOW',
+          type: 'FOLLOW_ADD',
           follow: resp,
         });
       }
@@ -160,7 +160,6 @@ class APIServer {
       method: "delete",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
-      data: JSON.stringify(follow),
       success: (resp) => {
         store.dispatch({
           type: 'DELETE_FOLLOW',
