@@ -82,7 +82,7 @@ class APIServer {
       success: (resp) => {
           store.dispatch({
             type: "SEARCH_SUCCESS",
-            data: resp["Search"],
+            data: resp.data,
           });
         }
       });
