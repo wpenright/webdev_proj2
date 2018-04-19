@@ -25,7 +25,7 @@ export default function User(params) {
       alreadyFollows = true
     }
   })
-  if (params.current_user === null || alreadyFollows {
+  if (params.current_user === null || alreadyFollows) {
     user = <p><Link to={"/users/" + params.user.id}>{ params.user.name }</Link></p>
   }
 
