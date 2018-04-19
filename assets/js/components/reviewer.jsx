@@ -49,7 +49,7 @@ let Reviewer = connect((state) => state)((props) => {
           <MoviePage id={match.params.movie_id} movie={_.filter(props.movies, (m) =>
             match.params.movie_id == m.api_id )[0]
           } reviews={_.filter(props.reviews, (r) =>
-            match.params.movie_id == r.movie.id )
+            match.params.movie_id == r.movie.api_id )
           }/>
         } />
       <Route path="/register" exact={true} render={() =>
