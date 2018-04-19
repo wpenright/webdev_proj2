@@ -28,7 +28,7 @@ function follows(state = [], action) {
   case 'FOLLOW_LIST':
     return [...action.follows]
   case 'FOLLOW_ADD':
-    return [action.follow, ...state]
+    return [action.follow.data, ...state]
   case 'FOLLOW_DELETE':
     return state.filter((f) => f.id != action.follow_id)
   default:
