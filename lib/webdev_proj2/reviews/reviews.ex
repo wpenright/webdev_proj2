@@ -183,14 +183,8 @@ defmodule WebdevProj2.Reviews do
     toReturn = %Review{}
     |> Review.changeset(attrs)
     |> Repo.insert()
-    IO.puts("-------------")
-    IO.inspect(toReturn)
-    IO.puts("-------------")
-    IO.inspect(elem(toReturn, 1))
+
     withLoaded = Repo.preload(elem(toReturn, 1), [:user, :movie])
-    IO.puts("-------------")
-    IO.inspect(withLoaded)
-    IO.puts("-------------")
     {elem(toReturn, 0), withLoaded}
   end
 
