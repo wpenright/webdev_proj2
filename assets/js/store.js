@@ -29,6 +29,8 @@ function follows(state = [], action) {
     return [...action.follows]
   case 'FOLLOW_ADD':
     return [action.follow, ...state]
+  case 'FOLLOW_DELETE':
+    return state.filter((f) => f.id != action.follow_id)
   default:
     return state
   }

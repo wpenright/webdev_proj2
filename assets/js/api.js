@@ -156,8 +156,8 @@ class APIServer {
       contentType: "application/json; charset=UTF-8",
       success: (resp) => {
         store.dispatch({
-          type: 'DELETE_FOLLOW',
-          follow: resp,
+          type: 'FOLLOW_DELETE',
+          follow_id: follow_id,
         });
       }
     });
