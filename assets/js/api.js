@@ -29,37 +29,33 @@ class APIServer {
     });
   }
 
-<<<<<<< HEAD
   request_feed(token) {
     $.ajax("/api/v1/feed?token=" + token, {
-=======
-  request_follows() {
-    $.ajax("/api/v1/follows", {
->>>>>>> bfde9ad14bd269dda180500c3fd7ce1ec43bc6f4
       method: "get",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
       success: (resp) => {
         store.dispatch({
-<<<<<<< HEAD
           type: "FEED_LIST",
           reviews: resp.data,
-=======
+
+
+  request_follows() {
+    $.ajax("/api/v1/follows", {
+      method: "get",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      success: (resp) => {
+        store.dispatch({
           type: "FOLLOW_LIST",
           follows: resp.data,
->>>>>>> bfde9ad14bd269dda180500c3fd7ce1ec43bc6f4
         });
       },
     });
   }
 
-<<<<<<< HEAD
   request_movies(token) {
     $.ajax("/api/v1/movies?token=" + token, {
-=======
-  request_movies() {
-    $.ajax("/api/v1/movies", {
->>>>>>> bfde9ad14bd269dda180500c3fd7ce1ec43bc6f4
       method: "get",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
@@ -103,14 +99,9 @@ class APIServer {
       });
   }
 
-<<<<<<< HEAD
   submit_review(review, token) {
     console.log("review sent", review)
     $.ajax("/api/v1/reviews?token=" + token, {
-=======
-  submit_review(review) {
-    $.ajax("/api/v1/reviews", {
->>>>>>> bfde9ad14bd269dda180500c3fd7ce1ec43bc6f4
       method: "post",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
@@ -118,11 +109,7 @@ class APIServer {
       success: (resp) => {          
           store.dispatch({
             type: "REVIEW_ADD",
-<<<<<<< HEAD
             data: resp.data,
-=======
-            review: resp.data,
->>>>>>> bfde9ad14bd269dda180500c3fd7ce1ec43bc6f4
           });
       }
     });
