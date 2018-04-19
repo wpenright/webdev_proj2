@@ -27,6 +27,7 @@ defmodule WebdevProj2Web.Router do
     get "/", PageController, :index
     get "/search", PageController, :index
     get "/reviews", PageController, :index
+    get "/movies", PageController, :index
     get "/movies/:movies_id", PageController, :index
     get "/users", PageController, :index
     get "/users/:user_id", PageController, :index
