@@ -2,22 +2,20 @@ defmodule WebdevProj2Web.FollowController do
   use WebdevProj2Web, :controller
 
   alias WebdevProj2.Accounts
-  alias WebdevProj2.Accounts.Follow
-  alias WebdevProj2.Auth
+  alias WebdevProj2.Accounts.Follow 
 
   action_fallback WebdevProj2Web.FallbackController
 
-  def index(conn, %{"token" => token}) do
-    Auth.verify_token(conn, token)
-    follows = Accounts.list_follows()
-    render(conn, "index.json", follows: follows)
+  def index(conn, _) do
+    if conn.assigns[:user_id] do
+      follows = Accounts.list_follows()
+      render(conn, "index.json", follows: follows)
+    end
   end
 
-  def create(conn, %{"follow" => follow_params, "token" => token}) do
-    req_id = Auth.verify_token(conn, token)
-
+  def create(conn, %{"follow" => follow_params}) do
     # Make sure users can only create a follow record for their own account
-    if req_id != follow_params["follower_id"] do
+    if conn.assigns[:user_id] != follow_params["follower_id"] do
       raise "Follower ID does not match session user!"
     end
 
@@ -29,19 +27,19 @@ defmodule WebdevProj2Web.FollowController do
     end
   end
 
-  def show(conn, %{"id" => id, "token" => token}) do
-    Auth.verify_token(conn, token)
-    follow = Accounts.get_follow!(id)
-    render(conn, "show.json", follow: follow)
+  def show(conn, %{"id" => id}) do
+    if conn.assigns[:user_id] do
+      follow = Accounts.get_follow!(id)
+      render(conn, "show.json", follow: follow)
+    end
   end
 
-  def update(conn, %{"id" => id, "follow" => follow_params, "token" => token}) do
-    req_id = Auth.verify_token(conn, token)
-
+  def update(conn, %{"id" => id, "follow" => follow_params}) do
+    user_id = conn.assigns[:user_id]
     follow = Accounts.get_follow!(id)
 
     # Make sure that a user can only modify follow records for their account
-    if req_id != follow["follower_id"] || req_id != follow_params["follower_id"] do
+    if user_id != follow["follower_id"] || user_id != follow_params["follower_id"] do
       raise "Follower ID does not match session user!"
     end
 
@@ -50,13 +48,11 @@ defmodule WebdevProj2Web.FollowController do
     end
   end
 
-  def delete(conn, %{"id" => id, "token" => token}) do
-    req_id = Auth.verify_token(conn, token)
-
+  def delete(conn, %{"id" => id}) do
     follow = Accounts.get_follow!(id)
 
     # Make sure that a user can only modify follow records for their account
-    if req_id != follow["follower_id"] do
+    if conn.assigns[:user_id] != follow["follower_id"] do
       raise "Follower ID does not match session user!"
     end
 

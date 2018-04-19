@@ -9,7 +9,7 @@ export default function MoviePage(props) {
   console.log("movie page props", props)
 
   if (props.movie === undefined) {
-    api.request_movie(props.id)
+    api.request_movie(props.id, props.token)
     return (
       <Container>
         <p>Loading movie information</p>

@@ -11,6 +11,14 @@ defmodule WebdevProj2Web.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :authorize
+  end
+
+  def authorize(conn, _) do
+    {status, user_id} = Phoenix.Token.verify(conn, "authorization",
+      conn.params["token"], max_age: 86400)
+    user_id = if status == :ok, do: user_id, else: nil
+    assign(conn, :user_id, user_id)
   end
 
   scope "/", WebdevProj2Web do
@@ -30,7 +38,7 @@ defmodule WebdevProj2Web.Router do
   scope "/api/v1", WebdevProj2Web do
     pipe_through :api
 
-    post "/feed", ReviewController, :feed
+    get "/feed", ReviewController, :feed
 	get "/search", MovieController, :search
     post "/token", TokenController, :create
     resources "/users", UserController, except: [:new, :edit]

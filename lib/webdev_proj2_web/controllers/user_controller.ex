@@ -3,14 +3,14 @@ defmodule WebdevProj2Web.UserController do
 
   alias WebdevProj2.Accounts
   alias WebdevProj2.Accounts.User
-  alias WebdevProj2.Auth
 
   action_fallback WebdevProj2Web.FallbackController
 
-  def index(conn, %{"token" => token}) do
-    Auth.verify_token(conn, token)
-    users = Accounts.list_users()
-    render(conn, "index.json", users: users)
+  def index(conn, _) do
+    if conn.assigns[:user_id] do
+      users = Accounts.list_users()
+      render(conn, "index.json", users: users)
+    end
   end
 
   def create(conn, %{"user_params" => user_params}) do
@@ -23,17 +23,16 @@ defmodule WebdevProj2Web.UserController do
     end
   end
 
-  def show(conn, %{"id" => id, "token" => token}) do
-    Auth.verify_token(conn, token)
-    user = Accounts.get_user_preloaded(id)
-    render(conn, "show.json", user: user)
+  def show(conn, %{"id" => id}) do
+    if conn.assigns[:user_id] do
+      user = Accounts.get_user_preloaded(id)
+      render(conn, "show.json", user: user)
+    end
   end
 
-  def update(conn, %{"id" => id, "user" => user_params, "token" => token}) do
-    req_id = Auth.verify_token(conn, token)
-
+  def update(conn, %{"id" => id, "user" => user_params}) do
     # Make sure that users can only modify their own account
-    if req_id != id do
+    if conn.assigns[:user_id] != id do
       raise "Requested ID does not match session!"
     end
 
@@ -43,11 +42,9 @@ defmodule WebdevProj2Web.UserController do
     end
   end
 
-  def delete(conn, %{"id" => id, "token" => token}) do
-    req_id = Auth.verify_token(conn, token)
-
+  def delete(conn, %{"id" => id}) do
     # Make sure that users can only modify their own account
-    if req_id != id do
+    if conn.assigns[:user_id] != id do
       raise "Requested ID does not match session!"
     end
 

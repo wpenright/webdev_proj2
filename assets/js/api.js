@@ -1,8 +1,8 @@
 import store from "./store";
 
 class APIServer {
-  request_users() {
-    $.ajax("/api/v1/users", {
+  request_users(token) {
+    $.ajax("/api/v1/users?token=" + token, {
       method: "get",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
@@ -15,8 +15,8 @@ class APIServer {
     });
   }
 
-  request_reviews() {
-    $.ajax("/api/v1/reviews", {
+  request_reviews(token) {
+    $.ajax("/api/v1/reviews?token=" + token, {
       method: "get",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
@@ -30,11 +30,10 @@ class APIServer {
   }
 
   request_feed(token) {
-    $.ajax("/api/v1/feed", {
-      method: "post",
+    $.ajax("/api/v1/feed?token=" + token, {
+      method: "get",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
-      data: JSON.stringify({token: token}),
       success: (resp) => {
         store.dispatch({
           type: "FEED_LIST",
@@ -44,8 +43,8 @@ class APIServer {
     });
   }
 
-  request_movies() {
-    $.ajax("/api/v1/movies", {
+  request_movies(token) {
+    $.ajax("/api/v1/movies?token=" + token, {
       method: "get",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
@@ -58,8 +57,8 @@ class APIServer {
     });
   }
 
-  request_movie(id) {
-    $.ajax("/api/v1/movies/" + id, {
+  request_movie(id, token) {
+    $.ajax("/api/v1/movies/" + id + "?token=" + token, {
       method: "get",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
@@ -120,9 +119,12 @@ class APIServer {
       success: (resp) => {
         store.dispatch({
           type: 'SET_TOKEN',
-          token: resp,
+          data: resp.data,
         });
         this.request_feed(resp.data.token);
+        this.request_reviews(resp.data.token);
+        this.request_users(resp.data.token);
+        this.request_movies(resp.data.token);
       },
     });
   }

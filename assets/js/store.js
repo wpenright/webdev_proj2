@@ -76,12 +76,22 @@ function search(state = search_state, action) {
   }
 }
 
-function token(state = null, action) {
+let empty_token = {
+  token: null,
+  user_id: -1,
+  user_name: "",
+}
+
+function token(state = empty_token, action) {
   switch (action.type) {
     case "SET_TOKEN":
-      return action.token
+      return {
+        token: action.data.token,
+        user_id: action.data.user_id,
+        user_name: action.data.user_name,
+      }
     case 'CLEAR_TOKEN':
-      return null;
+      return empty_token;
     default:
       return state
   }

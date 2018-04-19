@@ -3,15 +3,15 @@ defmodule WebdevProj2Web.MovieController do
 
   alias WebdevProj2.Reviews
   alias WebdevProj2.Reviews.Movie
-  alias WebdevProj2.API
-  alias WebdevProj2.Auth
+  alias WebdevProj2.API 
 
   action_fallback WebdevProj2Web.FallbackController
 
-  def index(conn, %{"token" => token}) do
-    Auth.verify_token(conn, token)
-    movies = Reviews.list_movies()
-    render(conn, "index.json", movies: movies)
+  def index(conn, _) do
+    if conn.assigns[:user_id] do
+      movies = Reviews.list_movies()
+      render(conn, "index.json", movies: movies)
+    end
   end
 
   # NOTE: This should not ever be called directly by client (restrict in router)
@@ -24,10 +24,11 @@ defmodule WebdevProj2Web.MovieController do
     end
   end
 
-  def show(conn, %{"id" => id, "token" => token}) do
-    Auth.verify_token(conn, token)
-    movie = Reviews.get_movie_by_api_preloaded(id)
-    render(conn, "show.json", movie: movie)
+  def show(conn, %{"id" => id}) do
+    if conn.assigns[:user_id] do
+      movie = Reviews.get_movie_by_api_preloaded(id)
+      render(conn, "show.json", movie: movie)
+    end
   end
 
   # NOTE: This should not ever be called directly by client (restrict in router)
@@ -47,9 +48,10 @@ defmodule WebdevProj2Web.MovieController do
     end
   end
 
-  def search(conn, %{"title" => title, "token" => token}) do
-    Auth.verify_token(conn, token)
-	movies = API.search_movies(title)
-    json(conn, movies)
+  def search(conn, %{"title" => title}) do
+    if conn.assigns[:user_id] do
+	  movies = API.search_movies(title)
+      json(conn, movies)
+    end
   end
 end

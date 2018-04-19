@@ -2,22 +2,20 @@ defmodule WebdevProj2Web.ReviewController do
   use WebdevProj2Web, :controller
 
   alias WebdevProj2.Reviews
-  alias WebdevProj2.Reviews.Review
-  alias WebdevProj2.Auth
+  alias WebdevProj2.Reviews.Review 
 
   action_fallback WebdevProj2Web.FallbackController
 
-  def index(conn, %{"token" => token}) do
-    Auth.verify_token(conn, token)
-    reviews = Reviews.list_reviews()
-    render(conn, "index.json", reviews: reviews)
+  def index(conn, _) do
+    if conn.assigns[:user_id] do
+      reviews = Reviews.list_reviews()
+      render(conn, "index.json", reviews: reviews)
+    end
   end
 
-  def create(conn, %{"review" => review_params, "token" => token}) do
-    req_id = Auth.verify_token(conn, token)
-
+  def create(conn, %{"review" => review_params}) do
     # Make sure that a user can only create a review under their own account
-    if req_id != review_params["user_id"] do
+    if conn.assigns[:user_id] != review_params["user_id"] do
       raise "User ID does not match session!"
     end
 
@@ -29,19 +27,19 @@ defmodule WebdevProj2Web.ReviewController do
     end
   end
 
-  def show(conn, %{"id" => id, "token" => token}) do
-    Auth.verify_token(conn, token)
-    review = Reviews.get_review!(id)
-    render(conn, "show.json", review: review)
+  def show(conn, %{"id" => id}) do
+    if conn.assigns[:user_id] do
+      review = Reviews.get_review!(id)
+      render(conn, "show.json", review: review)
+    end
   end
 
-  def update(conn, %{"id" => id, "review" => review_params, "token" => token}) do
-    req_id = Auth.verify_token(conn, token)
-
+  def update(conn, %{"id" => id, "review" => review_params}) do
+    user_id = conn.assigns[:user_id]
     review = Reviews.get_review!(id)
 
     # Make sure that a user can only modify a review under their own account
-    if req_id != review_params["user_id"] || req_id != review["user_id"] do
+    if user_id != review_params["user_id"] || user_id != review["user_id"] do
       raise "User ID does not match session!"
     end
 
@@ -50,13 +48,11 @@ defmodule WebdevProj2Web.ReviewController do
     end
   end
 
-  def delete(conn, %{"id" => id, "token" => token}) do
-    req_id = Auth.verify_token(conn, token)
-
+  def delete(conn, %{"id" => id}) do
     review = Reviews.get_review!(id)
 
     # Make sure that a user can only modify a review under their own account
-    if req_id != review["user_id"] do
+    if conn.assigns[:user_id] != review["user_id"] do
       raise "User ID does not match session!"
     end
 
@@ -65,9 +61,8 @@ defmodule WebdevProj2Web.ReviewController do
     end
   end
 
-  def feed(conn, %{"token" => token}) do
-    req_id = Auth.verify_token(conn, token)
-    reviews = Reviews.list_feed(req_id)
+  def feed(conn, _) do
+    reviews = Reviews.list_feed(conn.assigns[:user_id])
     render(conn, "index.json", reviews: reviews)
   end
 end
