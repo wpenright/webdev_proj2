@@ -75,9 +75,10 @@ class APIServer {
     store.dispatch({
       type: "SEACH_START",
     })
-    $.ajax("/api/v1/search", {
-      method: "post",
-      data: JSON.stringify({title: search_field}),
+    $.ajax("/api/v1/search/" + search_field, {
+      method: "get",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
       success: (resp) => {
           store.dispatch({
             type: "SEARCH_SUCCESS",
