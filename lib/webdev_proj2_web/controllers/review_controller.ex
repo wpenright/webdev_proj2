@@ -12,9 +12,6 @@ defmodule WebdevProj2Web.ReviewController do
   end
 
   def create(conn, %{"review" => review_params}) do
-    IO.puts("-------------------")
-    IO.inspect(review_params)
-    IO.puts("-------------------")
     with {:ok, %Review{} = review} <- Reviews.create_review(review_params) do
       conn
       |> put_status(:created)
