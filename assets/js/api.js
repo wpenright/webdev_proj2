@@ -149,14 +149,14 @@ class APIServer {
       success: (resp) => {
         store.dispatch({
           type: 'NEW_FOLLOW',
-          token: resp,
+          follow: resp,
         });
       }
     });
   }
 
   delete_follow(follow) {
-    $.ajax("/api/v1/follows", {
+    $.ajax("/api/v1/follows/" + follow.id, {
       method: "delete",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
@@ -164,7 +164,7 @@ class APIServer {
       success: (resp) => {
         store.dispatch({
           type: 'DELETE_FOLLOW',
-          token: resp,
+          follow: resp,
         });
       }
     });
