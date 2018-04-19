@@ -34,7 +34,7 @@ export default function User(params) {
       ff.followee_id === params.user.id && ff.follower_id === params.current_user.data.user_id
     )
     console.log("follows", follows)
-    const follow_id = follows[0]
+    const follow_id = follows[0].id
     console.log(follow_id)
 
     return (

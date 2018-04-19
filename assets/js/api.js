@@ -75,9 +75,8 @@ class APIServer {
     store.dispatch({
       type: "SEACH_START",
     })
-    let url = "http://www.omdbapi.com/?apikey=944d5561&s=" + search_field
     $.ajax("/api/v1/search", {
-      method: "get",
+      method: "post",
       data: JSON.stringify({title: search_field}),
       success: (resp) => {
           store.dispatch({
@@ -149,8 +148,8 @@ class APIServer {
     });
   }
 
-  delete_follow(follow) {
-    $.ajax("/api/v1/follows/" + follow.id, {
+  delete_follow(follow_id) {
+    $.ajax("/api/v1/follows/" + follow, {
       method: "delete",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
