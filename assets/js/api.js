@@ -81,7 +81,6 @@ class APIServer {
   }
 
   submit_review(review) {
-    console.log("review sent", review)
     $.ajax("/api/v1/reviews", {
       method: "post",
       dataType: "json",
@@ -90,7 +89,7 @@ class APIServer {
       success: (resp) => {
           store.dispatch({
             type: "REVIEW_ADD",
-            data: resp["data"],
+            data: resp,
           });
       }
     });
