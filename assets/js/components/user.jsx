@@ -12,13 +12,6 @@ export default function User(params) {
     console.log(params);
   }
 
-  let user = (
-    <p>
-      <Link to={"/users/" + params.user.id}>{ params.user.name }</Link>
-       -
-       <Button onClick={submit}>Follow</Button>
-     </p>
-   )
   let alreadyFollows = false
   if (current_user != undefined || current_user != null) {
     params.follows.forEach(function(ff) {
@@ -27,14 +20,20 @@ export default function User(params) {
       }
     })
   }
-  
-  if (params.current_user === null || alreadyFollows) {
-    user = <p><Link to={"/users/" + params.user.id}>{ params.user.name }</Link></p>
-  }
 
-  return (
+  if (params.current_user === null || alreadyFollows) {
+    return (
+      <div>
+        <p><Link to={"/users/" + params.user.id}>{ params.user.name }</Link></p>
+      </div>
+    )
+  } else {
     <div>
-      { user }
+      <p>
+        <Link to={"/users/" + params.user.id}>{ params.user.name }</Link>
+         -
+         <Button onClick={submit}>Follow</Button>
+       </p>
     </div>
-  )
+  }
 }
