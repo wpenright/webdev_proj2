@@ -26,7 +26,7 @@ function reviews(state = [], action) {
 function follows(state = [], action) {
   switch (action.type) {
   case 'FOLLOW_LIST':
-    return [...action.reviews]
+    return [...action.follows]
   case 'FOLLOW_ADD':
     return [action.follows, ...state]
   default:
