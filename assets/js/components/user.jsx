@@ -30,7 +30,7 @@ export default function User(params) {
       </div>
     )
   } else if (alreadyFollows) {
-    const follow_id = params.follows.filter((f) =>
+    const follow_id = params.follows.filter((ff) =>
       ff.followee_id === params.user.id && ff.follower_id === params.current_user.data.user_id
     )[0].id
     console.log("follows")
