@@ -13,7 +13,7 @@ export default function User(params) {
   }
 
   let alreadyFollows = false
-  if (current_user != undefined || current_user != null) {
+  if (params.current_user != undefined || params.current_user != null) {
     params.follows.forEach(function(ff) {
       if (ff.followee_id === params.user.id && ff.follower_id === params.current_user.data.user_id) {
         alreadyFollows = true
