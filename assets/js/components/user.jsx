@@ -28,12 +28,14 @@ export default function User(params) {
       </div>
     )
   } else {
-    <div>
-      <p>
-        <Link to={"/users/" + params.user.id}>{ params.user.name }</Link>
-         -
-         <Button onClick={submit}>Follow</Button>
-       </p>
-    </div>
+    return (
+      <div>
+        <p>
+          <Link to={"/users/" + params.user.id}>{ params.user.name }</Link>
+           -
+           <Button onClick={submit}>Follow</Button>
+         </p>
+      </div>
+    )
   }
 }
