@@ -75,11 +75,10 @@ class APIServer {
     store.dispatch({
       type: "SEACH_START",
     })
-    $.ajax("/api/v1/search", {
+    $.ajax("/api/v1/search" + search_field, {
       method: "get",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
-      data: JSON.stringify({title: search_field}),
       success: (resp) => {
           store.dispatch({
             type: "SEARCH_SUCCESS",
@@ -151,7 +150,7 @@ class APIServer {
   }
 
   delete_follow(follow_id) {
-    $.ajax("/api/v1/follows/" + follow, {
+    $.ajax("/api/v1/follows/" + follow_id, {
       method: "delete",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
