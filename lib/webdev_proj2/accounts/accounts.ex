@@ -162,7 +162,6 @@ defmodule WebdevProj2.Accounts do
   def get_follow!(id) do
     Repo.get!(Follow, id)
     |> preload(:follower)
-    |> preload(:followee)
   end
 
   @doc """
