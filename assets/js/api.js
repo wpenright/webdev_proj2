@@ -86,7 +86,7 @@ class APIServer {
       method: "post",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
-      data: JSON.stringify({review: review}),
+      data: JSON.stringify(review),
       success: (resp) => {
           store.dispatch({
             type: "REVIEW_ADD",
