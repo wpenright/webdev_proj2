@@ -187,7 +187,7 @@ defmodule WebdevProj2.Reviews do
     IO.inspect(toReturn)
     IO.puts("-------------")
     IO.inspect(toReturn[:review])
-    Repo.preload(toReturn[:review][:user, :movie])
+    Repo.preload(toReturn[:review],[:user, :movie])
     IO.puts("-------------")
     toReturn
   end
