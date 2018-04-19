@@ -139,7 +139,7 @@ function review_form(state = empty_review_form, action) {
     case 'REVIEW_UPDATE_FORM':
       return Object.assign({}, state, action.data)
     case 'SET_TOKEN':
-      return Object.assign({}, state, action.token)
+      return Object.assign({}, state, action.data)
     default:
       return state
   }

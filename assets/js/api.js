@@ -94,17 +94,18 @@ class APIServer {
     });
   }
 
-  submit_review(review) {
+  submit_review(review, token) {
     console.log("review sent", review)
-    $.ajax("/api/v1/reviews", {
+    $.ajax("/api/v1/reviews?token=" + token, {
       method: "post",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
       data: JSON.stringify({review: review}),
       success: (resp) => {
+          console.log("MICHAEL", resp)
           store.dispatch({
             type: "REVIEW_ADD",
-            data: resp["review"],
+            data: resp.data,
           });
       }
     });
