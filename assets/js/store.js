@@ -17,8 +17,18 @@ function reviews(state = [], action) {
   case 'REVIEW_LIST':
     return [...action.reviews]
   case 'REVIEW_ADD':
-    console.log("review", action.review)
     return [action.review, ...state]
+  default:
+    return state
+  }
+}
+
+function follows(state = [], action) {
+  switch (action.type) {
+  case 'FOLLOW_LIST':
+    return [...action.reviews]
+  case 'FOLLOW_ADD':
+    return [action.follows, ...state]
   default:
     return state
   }
@@ -129,7 +139,7 @@ function root_reducer(state0, action) {
   console.log("reducer", action)
   // {posts, users, form} is ES6 shorthand for
   // {posts: posts, users: users, form: form}
-  let reducer = combineReducers({login, movies, review_form, reviews, search, token, users, user_form})
+  let reducer = combineReducers({login, movies, review_form, reviews, search, token, users, user_form, follows})
   let state1 = reducer(state0, action)
   console.log("state1", state1)
   return deepFreeze(state1)

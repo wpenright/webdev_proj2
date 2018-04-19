@@ -29,6 +29,20 @@ class APIServer {
     });
   }
 
+  request_follows() {
+    $.ajax("/api/v1/follows", {
+      method: "get",
+      dataType: "json",
+      contentType: "application/json; charset=UTF-8",
+      success: (resp) => {
+        store.dispatch({
+          type: "FOLLOW_LIST",
+          follows: resp.data,
+        });
+      },
+    });
+  }
+
   request_movies() {
     $.ajax("/api/v1/movies", {
       method: "get",
