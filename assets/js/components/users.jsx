@@ -22,7 +22,7 @@ export default function Users(props) {
                                   follows={props.follows} token={props.token} />)
 
   return (
-    <div>
+    <div className="row">
       { users }
     </div>
   )

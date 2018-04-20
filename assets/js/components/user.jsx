@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Button } from 'reactstrap'
+import { Button, Card, CardBody, CardTitle } from 'reactstrap'
 import api from "../api"
 
 export default function User(params) {
@@ -26,8 +26,14 @@ export default function User(params) {
 
   if (params.current_user === null) {
     return (
-      <div>
-        <p><Link to={"/users/" + params.user.id}>{ params.user.name }</Link></p>
+      <div className="col-4 my-2">
+        <Card className="col-12">
+          <CardBody>
+            <CardTitle>
+              <Link to={"/users/" + params.user.id}>{ params.user.name }</Link>
+            </CardTitle>
+          </CardBody>
+        </Card>
       </div>
     )
   } else if (alreadyFollows) {
@@ -37,23 +43,29 @@ export default function User(params) {
     const follow_id = follows[0].id
 
     return (
-      <div>
-        <p>
-          <Link to={"/users/" + params.user.id}>{ params.user.name }</Link>
-           -
-           <Button onClick={() => deleteFollow(follow_id)}>Unfollow</Button>
-         </p>
+      <div className="col-4 my-2">
+        <Card className="col-12">
+          <CardBody className="row">
+            <CardTitle className="col-8">
+              <Link to={"/users/" + params.user.id}>{ params.user.name }</Link>
+            </CardTitle>
+            <Button outline className="col-4" onClick={() => deleteFollow(follow_id)}>Unfollow</Button>
+          </CardBody>
+        </Card>
       </div>
     )
   } else {
 
     return (
-      <div>
-        <p>
-          <Link to={"/users/" + params.user.id}>{ params.user.name }</Link>
-           -
-           <Button onClick={submit}>Follow</Button>
-         </p>
+      <div className="col-4 my-2">
+        <Card className = "col-12">
+          <CardBody className="row">
+            <CardTitle className="col-8">
+              <Link to={"/users/" + params.user.id}>{ params.user.name }</Link>
+            </CardTitle>
+            <Button outline className="col-4" color="primary" onClick={submit}>Follow</Button>
+          </CardBody>
+        </Card>
       </div>
     )
   }
