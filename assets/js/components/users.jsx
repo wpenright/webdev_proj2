@@ -20,7 +20,7 @@ export default function Users(props) {
   }
 
   users = users.map((uu) => <User key={uu.id} current_user={props.current_user} user={uu}
-                                  follows={props.follows} />)
+                                  follows={props.follows} token={props.token} />)
 
   return (
     <div>

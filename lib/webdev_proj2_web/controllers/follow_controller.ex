@@ -13,9 +13,9 @@ defmodule WebdevProj2Web.FollowController do
     end
   end
 
-  def create(conn, %{"follow" => follow_params}) do
+  def create(conn, follow_params) do
     # Make sure users can only create a follow record for their own account
-    if conn.assigns[:user_id] != follow_params["follower_id"] do
+    if conn.assigns[:user_id] != follow_params["follower_id"] do 
       raise "Follower ID does not match session user!"
     end
 

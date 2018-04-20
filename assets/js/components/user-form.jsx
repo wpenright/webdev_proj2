@@ -1,6 +1,6 @@
-
 import React from 'react'
 import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom'
 import { Button, FormGroup, Label, Input } from 'reactstrap'
 import NumericInput from 'react-numeric-input';
 import api from '../api'
@@ -23,6 +23,7 @@ function UserForm(props) {
 
   function submit(ev) {
     api.register_user(props.form)
+    props.history.push("/")
     console.log(props.form)
   }
 
@@ -60,4 +61,4 @@ function state2props(state) {
   }
 }
 
-export default connect(state2props)(UserForm)
+export default withRouter(connect(state2props)(UserForm))
