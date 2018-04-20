@@ -109,10 +109,10 @@ class APIServer {
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
       data: JSON.stringify({review: review}),
-      success: (resp) => {          
+      success: (resp) => {
           store.dispatch({
             type: "REVIEW_ADD",
-            data: resp.data,
+            review: resp.data,
           });
       }
     });

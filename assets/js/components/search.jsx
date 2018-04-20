@@ -21,10 +21,9 @@ function Search(props) {
 
   function submitSearch(ev) {
     ev.preventDefault()
-    api.submit_search(props.input, props.token)
-    console.log("submit", props.input)
+    api.submit_search(props.input)
   }
-  console.log("search props", props)
+
   return (
     <div>
       <Form inline onSubmit={submitSearch}>
@@ -44,7 +43,7 @@ function Search(props) {
       }
       { props.status === "waiting" &&
         <div>
-        
+
         </div>
       }
       { props.status === "have_results" &&

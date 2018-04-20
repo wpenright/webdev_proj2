@@ -3,7 +3,7 @@ defmodule WebdevProj2Web.MovieController do
 
   alias WebdevProj2.Reviews
   alias WebdevProj2.Reviews.Movie
-  alias WebdevProj2.API 
+  alias WebdevProj2.API
 
   action_fallback WebdevProj2Web.FallbackController
 
