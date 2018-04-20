@@ -35,7 +35,8 @@ let Reviewer = connect((state) => state)((props) => {
           <Search />
         } />
         <Route path="/users" exact={true} render={() =>
-          <Users users={props.users} current_user={props.token} follows={props.follows}/>
+          <Users users={props.users} current_user={props.token} 
+            follows={props.follows} token={props.token} />
         } />
         <Route path="/users/:user_id" render={({match}) =>
           <Feed reviews={_.filter(props.reviews, (r) =>

@@ -3,6 +3,7 @@ defmodule WebdevProj2Web.UserController do
 
   alias WebdevProj2.Accounts
   alias WebdevProj2.Accounts.User
+  alias WebdevProj2Web.TokenController
 
   action_fallback WebdevProj2Web.FallbackController
 
@@ -13,13 +14,13 @@ defmodule WebdevProj2Web.UserController do
     end
   end
 
-  def create(conn, %{"user_params" => user_params}) do
+  def create(conn, user_params) do
     # NOTE: Create does not require a valid session (user registration)
     with {:ok, %User{} = user} <- Accounts.create_user(user_params) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", user_path(conn, :show, user))
-      |> render("show.json", user: user)
+      |> TokenController.create(user_params) 
     end
   end
 

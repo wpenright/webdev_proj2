@@ -7,7 +7,7 @@ defmodule WebdevProj2Web.TokenController do
     with {:ok, %User{} = user} <- Accounts.authorize_user(email, password) do
       token = Phoenix.Token.sign(conn, "authorization", user.id)
       put_status(conn, :created)
-      |> render("token.json", user: user, token: token)
+      |> render(WebdevProj2Web.TokenView, "token.json", %{user: user, token: token})
     end
   end
 end

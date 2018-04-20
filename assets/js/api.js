@@ -43,8 +43,8 @@ class APIServer {
     });
   }
 
-  request_follows() {
-    $.ajax("/api/v1/follows", {
+  request_follows(token) {
+    $.ajax("/api/v1/follows?token=" + token, {
       method: "get",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
@@ -144,17 +144,20 @@ class APIServer {
       contentType: "application/json; charset=UTF-8",
       data: JSON.stringify(register),
       success: (resp) => {
-        window.location.replace('/');
         store.dispatch({
-          type: 'NEW_USER',
-          token: resp,
+          type: 'SET_TOKEN',
+          data: resp.data,
         });
+        this.request_feed(resp.data.token);
+        this.request_reviews(resp.data.token);
+        this.request_users(resp.data.token);
+        this.request_movies(resp.data.token);
       }
     });
   }
 
-  add_follow(follow) {
-    $.ajax("/api/v1/follows", {
+  add_follow(follow, token) {
+    $.ajax("/api/v1/follows?token=" + token, {
       method: "post",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
@@ -168,8 +171,8 @@ class APIServer {
     });
   }
 
-  delete_follow(follow_id) {
-    $.ajax("/api/v1/follows/" + follow_id, {
+  delete_follow(follow_id, token) {
+    $.ajax("/api/v1/follows/" + follow_id + "?token=" + token, {
       method: "delete",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
