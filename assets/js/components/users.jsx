@@ -1,13 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import User from './user'
+import api from '../api'
 /*
 function User(params) {
   return <p>{params.user.name} - <Link to={"/users/" + params.user.id}>{ params.user.name }</Link></p>
 }*/
 
 export default function Users(props) {
-
+  api.request_users()
   console.log(props)
   let users;
 
