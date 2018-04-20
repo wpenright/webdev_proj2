@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { Card, CardBody, CardTitle } from "reactstrap"
+import { Card, CardBody, CardTitle, CardSubtitle } from "reactstrap"
 
 export default function ReviewListItem(props) {
   let review = props.review;

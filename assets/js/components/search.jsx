@@ -21,7 +21,7 @@ function Search(props) {
 
   function submitSearch(ev) {
     ev.preventDefault()
-    api.submit_search(props.input)
+    api.submit_search(props.input, props.token)
   }
 
   return (
