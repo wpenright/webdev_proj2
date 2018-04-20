@@ -6,7 +6,8 @@ import api from "../api"
 export default function User(params) {
 
   function submit(ev) {
-    let follow = {follower_id:params.current_user.data.user_id, followee_id:params.user.id};
+    console.log(params.current_user)
+    let follow = {follower_id:params.current_user.user_id, followee_id:params.user.id};
     api.add_follow(follow);
   }
 

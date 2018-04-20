@@ -124,6 +124,7 @@ defmodule WebdevProj2.Reviews do
   end
 
   alias WebdevProj2.Reviews.Review
+  alias WebdevProj2.Accounts
 
   @doc """
   Returns the list of reviews.
@@ -136,6 +137,17 @@ defmodule WebdevProj2.Reviews do
   """
   def list_reviews do
     Repo.all(Review)
+    |> Repo.preload([:user, :movie])
+  end
+
+  @doc """
+  Returns the list of reviews made by users the given user follows.
+
+  """
+  def list_feed(user_id) do
+    user = Accounts.get_user_preloaded(user_id)
+    followee_ids = Enum.map(user.followees, &(&1.id))
+    Repo.all(from r in Review, where: r.user_id in ^followee_ids)
     |> Repo.preload([:user, :movie])
   end
 

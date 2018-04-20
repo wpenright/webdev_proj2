@@ -24,9 +24,10 @@ import api from './api'
 
 import reviewer_init from "./components/reviewer"
 $(function() {
-  api.request_reviews()
-  api.request_users()
-  api.request_movies()
-  api.request_follows()
+  // Comment out until cookies are implemented.
+  //api.request_reviews()
+  //api.request_users()
+  //api.request_movies()
+  //api.request_follows()
   reviewer_init(store)
 })

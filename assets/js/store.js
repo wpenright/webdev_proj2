@@ -12,6 +12,17 @@ function movies(state = [], action) {
   }
 }
 
+function feed(state = [], action) {
+  switch (action.type) {
+    case 'FEED_LIST':
+      return [...action.reviews]
+    case 'CLEAR_TOKEN':
+      return []
+    default:
+      return state
+  }
+}
+
 function reviews(state = [], action) {
   switch (action.type) {
   case 'REVIEW_LIST':
@@ -78,12 +89,22 @@ function search(state = search_state, action) {
   }
 }
 
-function token(state = null, action) {
+let empty_token = {
+  token: null,
+  user_id: -1,
+  user_name: "",
+}
+
+function token(state = empty_token, action) {
   switch (action.type) {
     case "SET_TOKEN":
-      return action.token
+      return {
+        token: action.data.token,
+        user_id: action.data.user_id,
+        user_name: action.data.user_name,
+      }
     case 'CLEAR_TOKEN':
-      return null;
+      return empty_token;
     default:
       return state
   }
@@ -131,7 +152,7 @@ function review_form(state = empty_review_form, action) {
     case 'REVIEW_UPDATE_FORM':
       return Object.assign({}, state, action.data)
     case 'SET_TOKEN':
-      return Object.assign({}, state, action.token)
+      return Object.assign({}, state, action.data)
     default:
       return state
   }
@@ -141,7 +162,7 @@ function root_reducer(state0, action) {
   console.log("reducer", action)
   // {posts, users, form} is ES6 shorthand for
   // {posts: posts, users: users, form: form}
-  let reducer = combineReducers({login, movies, review_form, reviews, search, token, users, user_form, follows})
+  let reducer = combineReducers({login, feed, movies, review_form, reviews, search, token, users, user_form, follows})
   let state1 = reducer(state0, action)
   console.log("state1", state1)
   return deepFreeze(state1)
