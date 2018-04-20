@@ -37,9 +37,9 @@ defmodule Seeds do
     b = Repo.insert!(%Movie{title: "Avengers: Infinity War", api_id: "BBB"})
 
     Repo.delete_all(Review)
-    Repo.insert!(%Review{movie_id: a.id, user_id: m.id, rating: 5, user_review: "A modern masterpiece."})
-    Repo.insert!(%Review{movie_id: b.id, user_id: e.id, rating: 5, user_review: "I just know it's going to be great."})
-    Repo.insert!(%Review{movie_id: a.id, user_id: e.id, rating: 5, user_review: "I just know it's going to be great2."})
+    Repo.insert!(%Review{movie_id: a.api_id, user_id: m.id, rating: 5, user_review: "A modern masterpiece."})
+    Repo.insert!(%Review{movie_id: b.api_id, user_id: e.id, rating: 5, user_review: "I just know it's going to be great."})
+    Repo.insert!(%Review{movie_id: a.api_id, user_id: e.id, rating: 5, user_review: "I just know it's going to be great2."})
   end
 end
 

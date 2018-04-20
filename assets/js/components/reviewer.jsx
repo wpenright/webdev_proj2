@@ -28,7 +28,7 @@ let Reviewer = connect((state) => state)((props) => {
         <Nav />
         <Route path="/" exact={true} render={() =>
           <div>
-            <Feed reviews={props.reviews} />
+            <Feed reviews={props.feed} />
           </div>
         } />
         <Route path="/search" exact={true} render={() =>
@@ -50,7 +50,7 @@ let Reviewer = connect((state) => state)((props) => {
             match.params.movie_id == m.api_id )[0]
           } reviews={_.filter(props.reviews, (r) =>
             match.params.movie_id == r.movie.api_id )
-          }/>
+          } token={props.token.token} />
         } />
       <Route path="/register" exact={true} render={() =>
           <UserForm />
