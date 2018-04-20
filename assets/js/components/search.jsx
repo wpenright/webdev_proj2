@@ -21,7 +21,7 @@ function Search(props) {
 
   function submitSearch(ev) {
     ev.preventDefault()
-    api.submit_search(props.input)
+    api.submit_search(props.input, props.token)
     console.log("submit", props.input)
   }
   console.log("search props", props)
@@ -66,6 +66,7 @@ function mapStateToProps(state) {
     results: state.search.results,
     input: state.search.input,
     status: state.search.status,
+    token: state.token.token,
   }
 }
 

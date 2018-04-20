@@ -40,8 +40,8 @@ defmodule WebdevProj2Web.Router do
     pipe_through :api
 
     get "/feed", ReviewController, :feed
-	get "/search", MovieController, :search
-	get "/search/:title", MovieController, :search
+    get "/search", MovieController, :search
+    get "/search/:title", MovieController, :search
     post "/token", TokenController, :create
     resources "/users", UserController, except: [:new, :edit]
     resources "/follows", FollowController, except: [:new, :edit]

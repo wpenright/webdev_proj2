@@ -85,11 +85,11 @@ class APIServer {
     });
   }
 
-  submit_search(search_field) {
+  submit_search(search_field, token) {
     store.dispatch({
       type: "SEACH_START",
     })
-    $.ajax("/api/v1/search/" + search_field, {
+    $.ajax("/api/v1/search/" + search_field + "?token=" + token, {
       method: "get",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
