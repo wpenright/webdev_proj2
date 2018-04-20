@@ -25,10 +25,10 @@ let LoginForm = connect(({login}) => {return {login}})((props) => {
       <Form inline onSubmit={create_token}>
         <FormGroup>
           <Input type="text" name="email" placeholder="email"
-                 value={props.login.email} onChange={update} />
+                 value={props.login.email} onChange={update} className="mx-1"/>
           <Input type="password" name="password" placeholder="password"
-                 value={props.login.password} onChange={update} />
-        <Button onClick={create_token}>Log In</Button>
+                 value={props.login.password} onChange={update} className="mx-1"/>
+        <Button onClick={create_token} className="mx-1">Log In</Button>
       </FormGroup>
       </Form>
     </div>
@@ -44,11 +44,10 @@ let Session = connect(({token}) => {return {token}})((props) => {
   }
 
   return (
-    <div className="navbar-text">
-      Logged in as: { props.token.user_name }
-	  <span>   </span>
-	  <Button onClick={delete_token}> Log Out</Button>
-    </div>
+    <span className="navbar-text">
+      <span className="mx-1">Hi, { props.token.user_name }</span>
+	  <Button className="mx-1" onClick={delete_token}>Log Out</Button>
+    </span>
   )
 })
 
@@ -59,7 +58,12 @@ function Nav(props) {
     session_info = <Session token={props.token} />
   }
   else {
-    session_info = (<div><p><NavLink to="/register" href="#">Create User</NavLink></p><LoginForm /></div>)
+    session_info = (
+      <span>
+        <LoginForm />
+        <NavLink to="/register" href="#" className="mx-1">Register</NavLink>
+      </span>
+    )
   }
 
   return (
@@ -69,16 +73,16 @@ function Nav(props) {
       </span>
       <ul className="navbar-nav mr-auto">
         <NavItem>
-          <NavLink to="/" exact={true} activeClassName="active" className="nav-link">Feed</NavLink>
+          <NavLink to="/" exact={true} href="#" activeClassName="active" className="nav-link">Feed</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="/search" href="#" activeClassName="active" className="nav-link">Search Movies</NavLink>
+          <NavLink to="/search" href="#" className="nav-link">Search Movies</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="/users" href="#" activeClassName="active" className="nav-link">All Users</NavLink>
+          <NavLink to="/users" href="#" className="nav-link">All Users</NavLink>
         </NavItem>
         <NavItem>
-          <NavLink to="/reviews" href="#" activeClassName="active" className="nav-link">All Reviews</NavLink>
+          <NavLink to="/reviews" href="#" className="nav-link">All Reviews</NavLink>
         </NavItem>
       </ul>
       { session_info }
