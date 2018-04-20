@@ -3,7 +3,7 @@ defmodule WebdevProj2Web.MovieController do
 
   alias WebdevProj2.Reviews
   alias WebdevProj2.Reviews.Movie
-  alias WebdevProj2.API 
+  alias WebdevProj2.API
 
   action_fallback WebdevProj2Web.FallbackController
 
@@ -49,16 +49,9 @@ defmodule WebdevProj2Web.MovieController do
   end
 
   def search(conn, %{"title" => title}) do
-<<<<<<< HEAD
-	movies = API.search_movies(title)
-    json(conn, movies)
-
-	# TODO: Return this data in the format expected by the front end
-=======
     if conn.assigns[:user_id] do
 	  movies = API.search_movies(title)
       json(conn, movies)
     end
->>>>>>> master
   end
 end

@@ -39,13 +39,9 @@ defmodule WebdevProj2Web.Router do
   scope "/api/v1", WebdevProj2Web do
     pipe_through :api
 
-<<<<<<< HEAD
-	  get "/search/:title", MovieController, :search
-=======
     get "/feed", ReviewController, :feed
-	get "/search", MovieController, :search
-	get "/search/:title", MovieController, :search
->>>>>>> master
+    get "/search", MovieController, :search
+    get "/search/:title", MovieController, :search
     post "/token", TokenController, :create
     resources "/users", UserController, except: [:new, :edit]
     resources "/follows", FollowController, except: [:new, :edit]
