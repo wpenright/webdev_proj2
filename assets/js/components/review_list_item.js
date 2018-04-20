@@ -13,7 +13,7 @@ export default function ReviewListItem(props) {
       </CardTitle>
       <CardTitle>{"Review Of: "}
         {props.movieLink ?
-          <Link to={"/movies/" + props.review.movie.id} >
+          <Link to={"/movies/" + props.review.movie.api_id} >
              { props.review.movie.title }
            </Link>
           : props.review.movie.title
