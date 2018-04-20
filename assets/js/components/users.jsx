@@ -7,7 +7,8 @@ function User(params) {
   return <p>{params.user.name} - <Link to={"/users/" + params.user.id}>{ params.user.name }</Link></p>
 }*/
 
-export default function Users(props) { 
+export default function Users(props) {
+  api.request_users()
   console.log(props)
   let users;
 
