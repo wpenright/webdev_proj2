@@ -132,6 +132,7 @@ class APIServer {
         this.request_feed(resp.data.token);
         this.request_reviews(resp.data.token);
         this.request_users(resp.data.token);
+        this.request_follows(resp.data.token);
         this.request_movies(resp.data.token);
       },
     });

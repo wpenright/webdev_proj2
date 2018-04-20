@@ -39,7 +39,7 @@ defmodule WebdevProj2Web.ReviewController do
     review = Reviews.get_review!(id)
 
     # Make sure that a user can only modify a review under their own account
-    if user_id != review_params["user_id"] || user_id != review["user_id"] do
+    if user_id != review_params["user_id"] || user_id != review.user_id do
       raise "User ID does not match session!"
     end
 
@@ -52,7 +52,7 @@ defmodule WebdevProj2Web.ReviewController do
     review = Reviews.get_review!(id)
 
     # Make sure that a user can only modify a review under their own account
-    if conn.assigns[:user_id] != review["user_id"] do
+    if conn.assigns[:user_id] != review.user_id do
       raise "User ID does not match session!"
     end
 

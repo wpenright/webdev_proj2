@@ -39,7 +39,7 @@ defmodule WebdevProj2Web.FollowController do
     follow = Accounts.get_follow!(id)
 
     # Make sure that a user can only modify follow records for their account
-    if user_id != follow["follower_id"] || user_id != follow_params["follower_id"] do
+    if user_id != follow.follower_id || user_id != follow_params["follower_id"] do
       raise "Follower ID does not match session user!"
     end
 
@@ -48,14 +48,14 @@ defmodule WebdevProj2Web.FollowController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
+  def delete(conn, %{"id" => id}) do 
     follow = Accounts.get_follow!(id)
 
     # Make sure that a user can only modify follow records for their account
-    if conn.assigns[:user_id] != follow["follower_id"] do
+    if conn.assigns[:user_id] != follow.follower_id do
       raise "Follower ID does not match session user!"
     end
-
+ 
     with {:ok, %Follow{}} <- Accounts.delete_follow(follow) do
       send_resp(conn, :no_content, "")
     end
