@@ -59,7 +59,7 @@ function Nav(props) {
   }
   else {
     session_info = (
-      <span>
+      <span className="navbar-text">
         <LoginForm />
         <NavLink to="/register" href="#" className="mx-1">Register</NavLink>
       </span>
