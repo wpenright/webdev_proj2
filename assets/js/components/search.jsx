@@ -65,6 +65,7 @@ function mapStateToProps(state) {
     results: state.search.results,
     input: state.search.input,
     status: state.search.status,
+    token: state.token.token,
   }
 }
 
