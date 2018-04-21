@@ -29,16 +29,22 @@ class APIServer {
     });
   }
 
-  request_feed(token) {
+  request_feed() {
+    var token = store.getState().token.token;
     $.ajax("/api/v1/feed?token=" + token, {
       method: "get",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
       success: (resp) => {
-        store.dispatch({
-          type: "FEED_LIST",
-          reviews: resp.data,
-        });
+        var cur_r = JSON.stringify(store.getState().reviews);
+        var new_r = JSON.stringify(resp.data);
+        var tmp = cur_r != new_r;
+        if (tmp) {
+          store.dispatch({
+            type: "FEED_LIST",
+            reviews: resp.data,
+          });
+        }
       }
     });
   }

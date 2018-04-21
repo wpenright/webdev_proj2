@@ -26,11 +26,7 @@ let Reviewer = connect((state) => state)((props) => {
     <Router>
       <div>
         <Nav />
-        <Route path="/" exact={true} render={() =>
-          <div>
-            <Feed reviews={props.feed} />
-          </div>
-        } />
+        <Route path="/" exact={true} render={() => <Feed reviews={props.feed} />} />
         <Route path="/search" exact={true} render={() =>
           <Search />
         } />
