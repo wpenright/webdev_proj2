@@ -15,28 +15,38 @@ class APIServer {
     });
   }
 
-  request_reviews(token) {
+  request_reviews() {
+    var token = store.getState().token.token;
+    if (token == null)
+      return;
     $.ajax("/api/v1/reviews?token=" + token, {
       method: "get",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
       success: (resp) => {
-        store.dispatch({
-          type: "REVIEW_LIST",
-          reviews: resp.data,
-        });
+        var cur_s = JSON.stringify(store.getState().reviews);
+        var new_s = JSON.stringify(resp.data);
+        var tmp = cur_s != new_s;
+        if (tmp) {
+          store.dispatch({
+            type: "REVIEW_LIST",
+            reviews: resp.data,
+          });
+        }
       },
     });
   }
 
   request_feed() {
     var token = store.getState().token.token;
+    if (token == null)
+      return;
     $.ajax("/api/v1/feed?token=" + token, {
       method: "get",
       dataType: "json",
       contentType: "application/json; charset=UTF-8",
       success: (resp) => {
-        var cur_r = JSON.stringify(store.getState().reviews);
+        var cur_r = JSON.stringify(store.getState().feed);
         var new_r = JSON.stringify(resp.data);
         var tmp = cur_r != new_r;
         if (tmp) {
@@ -135,8 +145,8 @@ class APIServer {
           type: 'SET_TOKEN',
           data: resp.data,
         });
-        this.request_feed(resp.data.token);
-        this.request_reviews(resp.data.token);
+        this.request_feed();
+        this.request_reviews();
         this.request_users(resp.data.token);
         this.request_follows(resp.data.token);
         this.request_movies(resp.data.token);
@@ -155,8 +165,8 @@ class APIServer {
           type: 'SET_TOKEN',
           data: resp.data,
         });
-        this.request_feed(resp.data.token);
-        this.request_reviews(resp.data.token);
+        this.request_feed();
+        this.request_reviews();
         this.request_users(resp.data.token);
         this.request_movies(resp.data.token);
       }
