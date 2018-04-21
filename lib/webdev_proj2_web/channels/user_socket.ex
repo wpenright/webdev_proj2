@@ -2,7 +2,7 @@ defmodule WebdevProj2Web.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", WebdevProj2Web.RoomChannel
+  channel "title:*", WebdevProj2Web.MovieChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket
