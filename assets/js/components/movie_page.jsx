@@ -46,7 +46,7 @@ export default class MoviePage extends React.Component {
                 <ReviewList reviews={ this.props.reviews } movieLinks={false}/>
               </Row>
               <Row>
-                <Chat api_id={ this.props.movie.api_id } user={ this.props.token.user_name } />
+                <Chat movie={ this.props.movie } user={ this.props.token.user_name } />
               </Row>
             </div>
           }
