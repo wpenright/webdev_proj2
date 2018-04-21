@@ -5,11 +5,11 @@ defmodule WebdevProj2.Backup do
     Agent.start_link(fn -> %{} end, name: __MODULE__)
   end
 
-  def save(title, chat) do
-    Agent.update(__MODULE__, &(Map.put(&1, title, chat)))
+  def save(api_id, chat) do
+    Agent.update(__MODULE__, &(Map.put(&1, api_id, chat)))
   end
 
-  def load(title) do
-    Agent.get(__MODULE__, &(Map.get(&1, title)))
+  def load(api_id) do
+    Agent.get(__MODULE__, &(Map.get(&1, api_id)))
   end
 end

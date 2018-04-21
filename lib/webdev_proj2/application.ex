@@ -13,7 +13,7 @@ defmodule WebdevProj2.Application do
       # Start the endpoint when the application starts
       supervisor(WebdevProj2Web.Endpoint, []),
       # Start your own worker by calling: WebdevProj2.Worker.start_link(arg1, arg2, arg3)
-      # worker(WebdevProj2.Worker, [arg1, arg2, arg3]),
+      worker(WebdevProj2.Backup, []),
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

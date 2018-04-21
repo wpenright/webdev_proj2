@@ -158,11 +158,21 @@ function review_form(state = empty_review_form, action) {
   }
 }
 
+function messages(state = [], action) {
+  switch (action.type) {
+    case 'NEW_MESSAGE':
+      return [...state, ...action.data]
+    default:
+      return state
+  }
+}
+
 function root_reducer(state0, action) {
   console.log("reducer", action)
   // {posts, users, form} is ES6 shorthand for
   // {posts: posts, users: users, form: form}
-  let reducer = combineReducers({login, feed, movies, review_form, reviews, search, token, users, user_form, follows})
+  let reducer = combineReducers({login, feed, movies, review_form, reviews, 
+      search, token, users, user_form, follows, messages})
   let state1 = reducer(state0, action)
   console.log("state1", state1)
   return deepFreeze(state1)
