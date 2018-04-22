@@ -9,7 +9,7 @@ import Chat from "./chat"
 export default class MoviePage extends React.Component {
   constructor(props) {
     super(props);
-    this.props = props;
+    this.props = props; 
 
     if (this.props.movie === undefined) {
       api.request_movie(this.props.id, this.props.token.token);
@@ -43,7 +43,7 @@ export default class MoviePage extends React.Component {
                 </Col>
               </Row>
               <Row>
-                <ReviewList reviews={ this.props.reviews } movieLinks={false}/>
+                <ReviewList reviews={ this.props.reviews } movieLinks={false} update={false}/>
               </Row>
               <Row>
                 <Chat movie={ this.props.movie } user={ this.props.token.user_name } />

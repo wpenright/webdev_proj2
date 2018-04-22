@@ -7,7 +7,8 @@ export default class ReviewList extends React.Component {
 
   constructor(props){
     super(props);
-    this.state = {reviews: props.reviews, movieLinks: props.movieLinks};
+    let update = props.update === undefined ? true : props.update;
+    this.state = {reviews: props.reviews, movieLinks: props.movieLinks, update: update};
   }
 
   render() {
@@ -23,20 +24,24 @@ export default class ReviewList extends React.Component {
 
   // Pull latest state from the server if the user re-clicks the tab
   componentDidUpdate(prevProps, prevState) {
-    api.request_reviews();
-    var olds = JSON.stringify(this.state.reviews);
-    var news = JSON.stringify(store.getState().reviews);
+    if (this.state.update) {
+      api.request_reviews();
+      var olds = JSON.stringify(this.state.reviews);
+      var news = JSON.stringify(store.getState().reviews);
 
-    // Only update the state if it is different
-    if (news != olds) {
-      this.setState({reviews: store.getState().reviews});
+      // Only update the state if it is different
+      if (news != olds) {
+        this.setState({reviews: store.getState().reviews});
+      }
     }
   }
 
   // Make sure we pull the latest state when the feed is first mounted
   // (Guaranteed to cause update)
   componentDidMount() {
-    api.request_reviews();
-    this.setState({reviews: store.getState().reviews});
+    if (this.state.update) {
+      api.request_reviews();
+      this.setState({reviews: store.getState().reviews});
+    }
   }
 }
