@@ -5,8 +5,7 @@ import socket from './../socket'
 
 class Chat extends React.Component {
   constructor(props) {
-    super(props);
-    console.log(props);
+    super(props); 
     this.props = props;
     this.channel = socket.channel("movie:" + props.movie.api_id, {});
     this.init_channel();
@@ -41,8 +40,7 @@ class Chat extends React.Component {
   }
 
   minimize(ev) {
-    chat = $("#chat")[0];
-    console.log("BOTTOM", $(chat).css("bottom"));
+    let chat = $("#chat")[0];
     if ($(chat).css("bottom") == "0px") {
       $(chat).css("bottom", "-45ex");
     } else {
