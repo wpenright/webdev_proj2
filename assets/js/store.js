@@ -160,6 +160,8 @@ function review_form(state = empty_review_form, action) {
 
 function messages(state = [], action) {
   switch (action.type) {
+    case 'SET_MESSAGES':
+      return [...action.data]
     case 'NEW_MESSAGE':
       return [...state, ...action.data]
     default:

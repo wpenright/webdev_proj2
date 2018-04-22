@@ -15,7 +15,7 @@ class Chat extends React.Component {
   init_channel() {
     this.channel.join()
       .receive("ok", resp => {
-        this.props.addMessages(resp.chat);
+        this.props.setMessages(resp.chat);
         $("#scroll").scrollTop($("#scroll")[0].scrollHeight);
       })
       .receive("error", resp => { 
@@ -90,6 +90,12 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
+    setMessages(messages) {
+      dispatch({
+        type: 'SET_MESSAGES',
+        data: messages,
+      })
+    },
     addMessages(messages) { 
       dispatch({
         type: 'NEW_MESSAGE',
